@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/drawable-v24/border_radius_lila_clar.xml" value="0.209" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.209" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/drawable/border_radius.xml" value="0.209" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/drawable/border_radius_black.xml" value="0.209" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/drawable/border_radius_blanc.xml" value="0.209" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/drawable/border_radius_inici_blanc.xml" value="0.209" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/drawable/border_radius_lila.xml" value="0.209" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/drawable/ic_launcher_background.xml" value="0.209" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/layout/activity_main.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/layout/activity_recuperar_contrasenya.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/layout/activity_register.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/layout/fragment_editar_publicacio.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/layout/fragment_iniciar_sessio.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/layout/fragment_nova__publicacio.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/layout/fragment_pantalla_inicial.xml" value="0.25" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/layout/fragment_perfil.xml" value="0.20863616930312098" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
