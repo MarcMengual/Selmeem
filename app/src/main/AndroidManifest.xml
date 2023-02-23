@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Selmeem"
         tools:targetApi="31">
         <activity
+            android:name=".ContenidorFragments"
+            android:exported="false" />
+        <activity
             android:name=".RecuperarContrasenya"
             android:exported="false" />
         <activity
