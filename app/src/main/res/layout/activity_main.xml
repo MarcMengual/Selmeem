@@ -33,7 +33,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.153"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/todo" />
 
     <View
         android:id="@+id/cardViewSh"
@@ -98,7 +99,8 @@
                 app:layout_constraintBottom_toBottomOf=""
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/edPassw"
@@ -117,7 +119,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/edEmail"
+                android:autofillHints="" />
 
             <Button
                 android:id="@+id/btnIniciarSessio"
@@ -177,7 +180,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="Encara no tens compte?"
+                android:text="@string/encara_no_tens_compte"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="italic"

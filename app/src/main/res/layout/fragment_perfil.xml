@@ -89,7 +89,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"></ImageView>
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:contentDescription="@string/todo" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -130,7 +131,7 @@
 
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="40dp"
-                android:text="Nom Usuari"
+                android:text="@string/nom_usuari"
                 app:layout_constraintBottom_toBottomOf="@+id/cardViewNom"
                 app:layout_constraintEnd_toEndOf="@+id/cardViewNom"
                 app:layout_constraintStart_toStartOf="@+id/cardViewNom"

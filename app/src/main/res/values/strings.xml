@@ -21,4 +21,8 @@
     <string name="editar_publicacio">Editar Publicacio</string>
     <string name="guardar">Guardar</string>
     <string name="eliminar">Eliminar</string>
+    <string name="todo">TODO</string>
+    <string name="encara_no_tens_compte">Encara no tens compte?</string>
+    <string name="crear_compte">Crear Compte</string>
+    <string name="nom_usuari">Nom Usuari</string>
 </resources>
