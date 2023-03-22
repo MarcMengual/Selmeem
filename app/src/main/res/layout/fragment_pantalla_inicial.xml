@@ -56,7 +56,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="@drawable/border_radius_inici_blanc"
                 android:text="@string/novetats"
                 app:backgroundTint="@null"
                 app:layout_constraintEnd_toStartOf="@+id/btnIniciarSessio4"
@@ -70,7 +69,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="@drawable/border_radius_inici_blanc"
                 android:text="@string/populars"
                 app:backgroundTint="@null"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,6 +76,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewPubli"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthSettings
 import com.google.firebase.auth.ktx.auth
@@ -35,7 +36,11 @@ class MainActivity : AppCompatActivity() {
         btnRecuperarContrasenya = findViewById(R.id.btnRecuperarContrasenya)
         btnRegistrar = findViewById(R.id.btnRegistrar)
 
+
+
         checkIfUserIsLogged()
+
+
 
         btnIniciarSessio.setOnClickListener {
             val email = edEmail.text.toString()
@@ -57,9 +62,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, Register::class.java))
             finish()
         }
-
-
     }
+
 
     private fun checkIfUserIsLogged(){
         if(auth.currentUser != null){
@@ -76,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if(task.isSuccessful){
                     val currentUser = auth.currentUser
-                    val intent = Intent(this, Pantalla_inicial::class.java)
+                    val intent = Intent(this, ContenidorFragments::class.java)
                     intent.putExtra("user", currentUser?.email)
                     startActivity(intent)
                     finish()
@@ -84,8 +88,8 @@ class MainActivity : AppCompatActivity() {
                     showAlert()
                 }
             }
-
     }
+
 
     private fun showAlert(){
 
@@ -96,5 +100,4 @@ class MainActivity : AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
-
 }
