@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Selmeem</string>
+    <string name="contrasenya">Contrasenya</string>
+    <string name="email">Email</string>
+    <string name="iniciar_sessio">Iniciar Sessio</string>
+    <string name="registrarse">Registrarse</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nom">nom</string>
+    <string name="confirmar_contrasenya">Confirmar Contrasenya</string>
+    <string name="Nom">Nom</string>
+    <string name="edat">Edat</string>
+    <string name="recuperar_contrasenya">Recuperar Contrasenya</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="novetats">Novetats</string>
+    <string name="populars">Populars</string>
+    <string name="perfil">Perfil</string>
+    <string name="nova_publicacio">Nova Publicacio</string>
+    <string name="penjar_imatge">Penjar Imatge</string>
+    <string name="publicar">Publicar</string>
+    <string name="editar_publicacio">Editar Publicacio</string>
+    <string name="guardar">Guardar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="todo">TODO</string>
+    <string name="encara_no_tens_compte">Encara no tens compte?</string>
+    <string name="crear_compte">Crear Compte</string>
+    <string name="nom_usuari">Nom Usuari</string>
+</resources>
