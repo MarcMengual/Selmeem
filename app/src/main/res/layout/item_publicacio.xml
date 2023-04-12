@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_radius_inici_blanc">
+
+    <TextView
+        android:id="@+id/titol"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imatgePublicacio"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:layout_below="@+id/titol"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp" />
+
+    <TextView
+        android:id="@+id/de"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@+id/imatgePublicacio"
+        android:layout_marginStart="10dp"
+        android:text="@string/de"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/personaProp"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/imatgePublicacio"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/de"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/like"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/imatgePublicacio"
+        android:layout_toEndOf="@+id/likeImage"
+        android:textColor="#E1BEFF"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/fav"
+        android:layout_width="40dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/imatgePublicacio"
+        android:layout_toStartOf="@+id/likeImage"
+        android:src="@drawable/fav" />
+
+    <ImageView
+        android:id="@+id/likeImage"
+        android:layout_width="40dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/imatgePublicacio"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/like" />
+
+
+</RelativeLayout>

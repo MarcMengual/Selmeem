@@ -157,7 +157,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@drawable/border_radius_inici_blanc"
-                android:text="@string/perfil"
+                android:text="@string/publicacions"
                 app:backgroundTint="@null"
                 app:layout_constraintBottom_toTopOf="@+id/recyclerViewPerfil"
                 app:layout_constraintEnd_toEndOf="parent"
