@@ -3,57 +3,42 @@ package cat.copernic.roomdecision.selmeem
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import cat.copernic.roomdecision.selmeem.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class Register : AppCompatActivity() {
 
-    private lateinit var edNom: EditText
-    private lateinit var edPassw: EditText
-    private lateinit var edPassw2: EditText
-    private lateinit var edEmail2: EditText
-    private lateinit var edEdat: EditText
-    private lateinit var btnIniciarSessio: Button
-    private lateinit var btnCancelar: Button
-
+    private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
 
-        edNom = findViewById(R.id.edNom)
-        edPassw = findViewById(R.id.edPassw)
-        edPassw2 = findViewById(R.id.edPassw2)
-        edEmail2 = findViewById(R.id.edEmail2)
-        edEdat = findViewById(R.id.edEdat)
-        btnIniciarSessio = findViewById(R.id.btnIniciarSessio)
-        btnCancelar = findViewById(R.id.btnCancelar)
+        binding =ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btnIniciarSessio.setOnClickListener {
-            val email = edEmail2.text.toString()
-            val password = edPassw.text.toString()
-            val repeatPassword = edPassw2.text.toString()
-            val name = edNom.text.toString()
-            val edat = edEdat.text.toString()
+        binding.btnIniciarSessio.setOnClickListener {
+            val name = binding.edNom.text.toString()
+            val password = binding.edPassw.text.toString()
+            val repeatPassword = binding.edPassw2.text.toString()
+            val email = binding.edEmail2.text.toString()
+            val edat = binding.edEdat.text.toString()
 
 
             if (password.equals(repeatPassword)) {
                 if (email.isNotEmpty() && password.isNotEmpty() && repeatPassword.isNotEmpty() && name.isNotEmpty() && edat.isNotEmpty()){
                     register(email, password)
                 } else {
-                    showAlert()
+                    showAlertt()
                 }
             }
         }
 
-        btnCancelar.setOnClickListener{
+        binding.btnCancelar.setOnClickListener{
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
@@ -64,7 +49,7 @@ class Register : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    startActivity(Intent(this, Pantalla_inicial::class.java))
+                    startActivity(Intent(this, ContenidorFragments::class.java))
                     finish()
                 } else {
                     showAlert()
@@ -78,6 +63,16 @@ class Register : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
         builder.setMessage("S'ha produit un error en la creació del compte")
+        builder.setPositiveButton("Aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
+    private fun showAlertt() {
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage("XD")
         builder.setPositiveButton("Aceptar", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()

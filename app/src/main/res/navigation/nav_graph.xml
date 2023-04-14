@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_grav"
+    app:startDestination="@id/mainActivity">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="cat.copernic.roomdecision.selmeem.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <activity
+        android:id="@+id/register"
+        android:name="cat.copernic.roomdecision.selmeem.Register"
+        android:label="activity_register"
+        tools:layout="@layout/activity_register" />
+    <fragment
+        android:id="@+id/pantalla_inicial"
+        android:name="cat.copernic.roomdecision.selmeem.Pantalla_inicial"
+        android:label="fragment_pantalla_inicial"
+        tools:layout="@layout/fragment_pantalla_inicial" >
+        <action
+            android:id="@+id/action_pantalla_inicial_to_nova_Publicacio"
+            app:destination="@id/nova_Publicacio" />
+        <action
+            android:id="@+id/action_pantalla_inicial_to_perfil"
+            app:destination="@id/perfil" />
+    </fragment>
+    <activity
+        android:id="@+id/recuperarContrasenya"
+        android:name="cat.copernic.roomdecision.selmeem.RecuperarContrasenya"
+        android:label="activity_recuperar_contrasenya"
+        tools:layout="@layout/activity_recuperar_contrasenya" />
+    <fragment
+        android:id="@+id/editar_publicacio2"
+        android:name="cat.copernic.roomdecision.selmeem.Editar_publicacio"
+        android:label="fragment_editar_publicacio"
+        tools:layout="@layout/fragment_editar_publicacio" >
+        <action
+            android:id="@+id/action_editar_publicacio2_to_perfil"
+            app:destination="@id/perfil" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfil"
+        android:name="cat.copernic.roomdecision.selmeem.Perfil"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_perfil_to_pantalla_inicial"
+            app:destination="@id/pantalla_inicial" />
+        <action
+            android:id="@+id/action_perfil_to_editar_publicacio2"
+            app:destination="@id/editar_publicacio2" />
+    </fragment>
+    <fragment
+        android:id="@+id/nova_Publicacio"
+        android:name="cat.copernic.roomdecision.selmeem.Nova_Publicacio"
+        android:label="fragment_nova__publicacio"
+        tools:layout="@layout/fragment_nova__publicacio" >
+        <action
+            android:id="@+id/action_nova_Publicacio_to_pantalla_inicial"
+            app:destination="@id/pantalla_inicial" />
+    </fragment>
+</navigation>
