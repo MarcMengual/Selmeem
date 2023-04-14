@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_pantalla_inicial_to_perfil"
+        android:title="Perfil"
+        android:icon="@drawable/fav"></item>
+
+    <item
+        android:id="@+id/action_pantalla_inicial_to_nova_Publicacio"
+        android:title="Nova Publicaio"
+        android:icon="@drawable/like"></item>
+
+    <item
+        android:id="@+id/logOut"
+        android:title="Tancar Sessio"
+        android:icon="@drawable/border_radius_lila"></item>
+
+</menu>
