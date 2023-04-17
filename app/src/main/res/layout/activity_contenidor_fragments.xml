@@ -7,7 +7,7 @@
     tools:context=".ContenidorFragments">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/contenidorFragments"
+        android:id="@+id/contenidorFragments1"
         android:name="cat.copernic.roomdecision.selmeem.Pantalla_inicial"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

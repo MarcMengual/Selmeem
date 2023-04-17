@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/toHome"
+        android:title="Inici"
+        ></item>
+
+    <item
         android:id="@+id/action_pantalla_inicial_to_perfil"
         android:title="Perfil"
         android:icon="@drawable/fav"></item>

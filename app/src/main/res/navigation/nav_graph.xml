@@ -38,7 +38,7 @@
         android:label="fragment_editar_publicacio"
         tools:layout="@layout/fragment_editar_publicacio" >
         <action
-            android:id="@+id/action_editar_publicacio2_to_perfil"
+            android:id="@+id/toHome"
             app:destination="@id/perfil" />
     </fragment>
     <fragment
@@ -47,7 +47,7 @@
         android:label="fragment_perfil"
         tools:layout="@layout/fragment_perfil" >
         <action
-            android:id="@+id/action_perfil_to_pantalla_inicial"
+            android:id="@+id/toHome"
             app:destination="@id/pantalla_inicial" />
         <action
             android:id="@+id/action_perfil_to_editar_publicacio2"
@@ -59,7 +59,7 @@
         android:label="fragment_nova__publicacio"
         tools:layout="@layout/fragment_nova__publicacio" >
         <action
-            android:id="@+id/action_nova_Publicacio_to_pantalla_inicial"
+            android:id="@+id/toHome"
             app:destination="@id/pantalla_inicial" />
     </fragment>
 </navigation>

@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/LilaFosc"
-    android:backgroundTint="@color/LilaFosc"
     tools:context=".Perfil">
 
     <androidx.cardview.widget.CardView
@@ -54,13 +53,14 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="@drawable/border_radius_inici_blanc"
+                android:background="@drawable/border_radius_inici_blanc"
                 android:text="@string/perfil"
                 app:backgroundTint="@null"
                 app:layout_constraintBottom_toTopOf="@+id/cardViewImatgePerfil"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewImatgePerfil"
@@ -135,7 +135,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/cardViewNom"
                 app:layout_constraintEnd_toEndOf="@+id/cardViewNom"
                 app:layout_constraintStart_toStartOf="@+id/cardViewNom"
-                app:layout_constraintTop_toTopOf="@+id/cardViewNom" />
+                app:layout_constraintTop_toTopOf="@+id/cardViewNom"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <View
                 android:id="@+id/cardViewBott"
@@ -156,14 +157,14 @@
 
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="@drawable/border_radius_inici_blanc"
                 android:text="@string/publicacions"
                 app:backgroundTint="@null"
                 app:layout_constraintBottom_toTopOf="@+id/recyclerViewPerfil"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardViewNom" />
+                app:layout_constraintTop_toBottomOf="@+id/cardViewNom"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
