@@ -1,25 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
 
-    <item
-        android:id="@+id/toHome"
-        android:title="Inici"
-        ></item>
+    <group
+        android:id="@+id/si"
+        android:checkableBehavior="single">
 
-    <item
-        android:id="@+id/action_pantalla_inicial_to_perfil"
-        android:title="Perfil"
-        android:icon="@drawable/fav"></item>
+        <item
+            android:id="@+id/toHome"
+            android:title="Inici" />
 
-    <item
-        android:id="@+id/action_pantalla_inicial_to_nova_Publicacio"
-        android:title="Nova Publicaio"
-        android:icon="@drawable/like"></item>
+        <item
+            android:id="@+id/action_pantalla_inicial_to_nova_Publicacio"
+            android:icon="@drawable/like"
+            android:title="Nova Publicaio" />
 
-    <item
-        android:id="@+id/logOut"
-        android:title="Tancar Sessio"
-        android:icon="@drawable/border_radius_lila"></item>
+
+    </group>
+    <group
+        android:id="@+id/no"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/action_pantalla_inicial_to_perfil"
+            android:icon="@drawable/fav"
+            android:title="Perfil" />
+
+    </group>
+    <group
+        android:id="@+id/op"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/logOut"
+            android:icon="@drawable/border_radius_lila"
+            android:title="Tancar Sessio" />
+
+    </group>
 
 </menu>

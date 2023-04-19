@@ -11,6 +11,7 @@
         <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/drawable/border_radius_gris_edit_text.xml" value="0.123" />
         <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/drawable/border_radius_inici_blanc.xml" value="0.209" />
         <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/drawable/border_radius_lila.xml" value="0.209" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/drawable/border_radius_menuc.xml" value="0.2305" />
         <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/drawable/ic_launcher_background.xml" value="0.209" />
         <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/layout/activity_contenidor_fragments.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/layout/activity_main.xml" value="0.20863616930312098" />
@@ -23,6 +24,7 @@
         <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/layout/fragment_perfil.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/layout/item_publicacio.xml" value="0.20778110303548525" />
         <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/layout/recycler_publicacio.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/layout/toolbar.xml" value="0.20778110303548525" />
         <entry key="..\:/Users/mengu/AndroidStudioProjects/Selmeem/app/src/main/res/menu/main_menu.xml" value="0.20778110303548525" />
       </map>
     </option>

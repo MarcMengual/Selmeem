@@ -2,10 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="LilaFosc">#8300FF</color>
+    <color name="LilaFosc">#B06EFF</color>
     <color name="grisClar">#F0F0F0</color>
     <color name="blau">#00CDFF</color>
     <color name="lilaFosc2">#7D3CFF</color>
     <color name="blauClar">#E6FEFF</color>
     <color name="lilaClar">#E1BEFF</color>
+    <color name="grisMoltClar">#F4F4F4</color>
 </resources>

@@ -84,16 +84,16 @@
             android:layout_height="match_parent">
 
             <EditText
+                style="@style/Theme.editTextGris"
+                app:backgroundTint="@color/grisClar"
+
                 android:id="@+id/edEmail"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
-                android:textColor="@android:color/black"
 
-
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/border_radius_blanc"
+                android:layout_marginEnd="15dp"
                 android:ems="10"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
@@ -104,17 +104,16 @@
                 android:autofillHints="" />
 
             <EditText
+                style="@style/Theme.editTextGris"
+                app:backgroundTint="@color/grisClar"
+
                 android:id="@+id/edPassw"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginBottom="110dp"
-                android:textColor="@android:color/black"
 
-
-
-                android:background="@color/grisClar"
                 android:ems="10"
                 android:hint="@string/contrasenya"
                 android:inputType="textPassword"

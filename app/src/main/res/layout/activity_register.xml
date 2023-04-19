@@ -25,7 +25,7 @@
         android:id="@+id/cardViewSh"
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:background="#8300FF"
+        android:background="@color/LilaFosc"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,14 +69,16 @@
             android:layout_height="match_parent">
 
             <EditText
+                style="@style/Theme.editTextGris"
+                app:backgroundTint="@color/grisClar"
+
                 android:id="@+id/edNom"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="15dp"
 
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="20dp"
-                android:background="@color/grisClar"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
                 android:ems="10"
                 android:hint="@string/Nom"
 
@@ -88,15 +90,16 @@
                 android:autofillHints="" />
 
             <EditText
+                style="@style/Theme.editTextGris"
+                app:backgroundTint="@color/grisClar"
                 android:id="@+id/edPassw"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
 
 
-                android:layout_marginEnd="20dp"
-                android:background="@color/grisClar"
+                android:layout_marginEnd="15dp"
                 android:ems="10"
                 android:hint="@string/contrasenya"
                 android:inputType="textPassword"
@@ -124,15 +127,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/edEdat" />
 
             <EditText
+                style="@style/Theme.editTextGris"
+                app:backgroundTint="@color/grisClar"
+
                 android:id="@+id/edEmail2"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
 
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
 
-                android:layout_marginEnd="20dp"
-                android:background="@color/grisClar"
+                android:layout_marginEnd="15dp"
                 android:ems="10"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
@@ -145,15 +150,17 @@
                 android:autofillHints="" />
 
             <EditText
+                style="@style/Theme.editTextGris"
+                app:backgroundTint="@color/grisClar"
+
                 android:id="@+id/edPassw2"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
 
 
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="20dp"
-                android:background="@color/grisClar"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
                 android:ems="10"
                 android:hint="@string/confirmar_contrasenya"
                 android:inputType="textPassword"
@@ -179,15 +186,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/btnIniciarSessio" />
 
             <EditText
+                style="@style/Theme.editTextGris"
+                app:backgroundTint="@color/grisClar"
+
                 android:id="@+id/edEdat"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
 
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/grisClar"
                 android:ems="10"
                 android:hint="@string/edat"
                 android:inputType="textEmailAddress"

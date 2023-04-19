@@ -27,4 +27,7 @@
     <string name="nom_usuari">Nom Usuari</string>
     <string name="publicacions">Publicacions</string>
     <string name="de">De:</string>
+    <string name="open_drawer">Abrir menú</string>
+    <string name="close_drawer">Cerrar menú</string>
+
 </resources>
