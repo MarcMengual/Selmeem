@@ -26,6 +26,9 @@ class ContenidorFragments : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        val email = intent.getStringExtra("email")
+
+
         // Seteamos la toolbar
         setSupportActionBar(findViewById(R.id.toolbar))
 
@@ -46,11 +49,16 @@ class ContenidorFragments : AppCompatActivity() {
                     return@setNavigationItemSelectedListener true
                 }
                 R.id.action_pantalla_inicial_to_perfil -> {
-                    val fragment = Perfil()
+                    val fragment = Perfil().apply {
+                        arguments = Bundle().apply {
+                            putString("email", email)
+                        }
+                    }
                     supportFragmentManager.beginTransaction().replace(R.id.contenidorFragments1, fragment).commit()
                     drawerLayout.closeDrawers()
                     return@setNavigationItemSelectedListener true
                 }
+
                 R.id.action_pantalla_inicial_to_nova_Publicacio -> {
                     val fragment = Nova_Publicacio()
                     supportFragmentManager.beginTransaction().replace(R.id.contenidorFragments1, fragment).commit()
