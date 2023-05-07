@@ -9,7 +9,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -17,98 +19,145 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 
 class Perfil : Fragment() {
 
+    // Declaració de variables de classe
     private lateinit var email: String
     private lateinit var imageView: ImageView
+    private lateinit var btnIniciarSessio3: Button
 
     companion object {
-        private const val REQUEST_CODE_GALLERY = 2
-        const val REQUEST_CODE_PICK_IMAGE = 1
-
+        private const val REQUEST_CODE_PICK_IMAGE = 1
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        // Infla el disseny del fragment
         return inflater.inflate(R.layout.fragment_perfil, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        email = arguments?.getString("email").toString()
-        imageView = view.findViewById<ImageView>(R.id.imageViewPerf)
 
-        // Obtén la referencia a la colección "usuarios"
+        // Inicialitza les variables de classe
+        email = FirebaseAuth.getInstance().currentUser?.email.toString()
+        imageView = view.findViewById<ImageView>(R.id.imageViewPerf)
+        btnIniciarSessio3 = view.findViewById<Button>(R.id.btnIniciarSessio3)
+
+        // Obté la referència a la col·lecció "usuarios"
         val db = Firebase.firestore
         val usersRef = db.collection("usuarios")
 
-        // Obtiene los datos del usuario actual y actualiza la vista
+        // Obté les dades de l'usuari actual i actualitza la vista
         FirebaseAuth.getInstance().currentUser?.let { user ->
-            usersRef.document(user.email!!).get().addOnSuccessListener { documentSnapshot ->
+            GlobalScope.launch(Dispatchers.IO) {
+                val documentSnapshot = usersRef.document(user.email!!).get().await()
                 if (documentSnapshot.exists()) {
                     val name = documentSnapshot.getString("nom")
                     val image = documentSnapshot.getString("imatge")
 
-                    // Actualiza el TextView con el nombre del usuario
-                    val nameTextView = view.findViewById<TextView>(R.id.nomText)
-                    nameTextView.text = name
+                    // Actualitza el TextView amb el nom de l'usuari
+                    withContext(Dispatchers.Main) {
+                        val nameTextView = view.findViewById<TextView>(R.id.nomText)
+                        nameTextView.text = name
+                    }
 
-                    // Carga la imagen desde Firebase Storage y actualiza el ImageView
-                    val storageRef = Firebase.storage.reference
-                    val imageRef = storageRef.child(image!!)
-                    imageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener { bytes ->
+                    // Carrega la imatge des de Firebase Storage i actualitza el ImageView
+                    withContext(Dispatchers.IO) {
+                        val storageRef = Firebase.storage.reference
+                        val imageRef = storageRef.child(image!!)
+                        val bytes = imageRef.getBytes(Long.MAX_VALUE).await()
                         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-                        imageView.setImageBitmap(bitmap)
-                    }.addOnFailureListener { e ->
-                        Log.e(TAG, "Error al cargar la imagen", e)
+                        withContext(Dispatchers.Main) {
+                            imageView.setImageBitmap(bitmap)
+                        }
                     }
                 }
             }
         }
 
-        // Agrega un listener de clic en la imagen del perfil
-        imageView.setOnClickListener {
-            // Crea un intent para abrir la galería
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            startActivityForResult(intent, REQUEST_CODE_GALLERY)
+        // Afegir un listener de clic al botó de perfil
+        btnIniciarSessio3.setOnClickListener { view ->
+            val popupMenu = PopupMenu(requireContext(), view)
+            popupMenu.menuInflater.inflate(R.menu.perfil_menu, popupMenu.menu)
+
+            popupMenu.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.menuCambiarImagen -> {
+                        // Obre la galeria
+                        val intent = Intent(Intent.ACTION_PICK)
+                        intent.type = "image/*"
+                        startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE)
+                        true
+                    }
+                    R.id.menuEditarPerfil -> {
+                        // Canvia el fragment a editarPerfil
+                        val EditarPerfilFragment = EditarPerfil()
+                        parentFragmentManager.beginTransaction()
+                            .replace(R.id.contenidorFragments1, EditarPerfilFragment)
+                            .addToBackStack(null)
+                            .commit()
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            popupMenu.show()
+
         }
     }
 
+    // Método que s'executa quan l'usuari ha seleccionat una imatge de la galería
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQUEST_CODE_PICK_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
             val imageUri = data.data
 
-            // Sube la imagen a Firebase Storage
+            // Pujar la imatge a Firebase Storage
             val storageRef = Firebase.storage.reference
-            val imageRef = storageRef.child("${email}_${System.currentTimeMillis()}")
+            val imageName = "${email}_${System.currentTimeMillis()}"
+            val imageRef = storageRef.child(imageName)
+
+            // Afegir un listener d'èxit i fracàs a la pujada de la imatge
             imageRef.putFile(imageUri!!)
-                .addOnSuccessListener {
-                    // Actualiza el campo "imatge" del documento en la base de datos
+                .addOnSuccessListener { taskSnapshot ->
+                    // Obtenir el nom de la imatge i actualitzar-lo a la base de dades
                     val db = Firebase.firestore
-                    db.collection("usuarios").document(email).update("imatge", imageRef.name)
+                    db.collection("usuarios").document(email).update("imatge", imageName)
                         .addOnSuccessListener {
-                            // Actualiza la imagen de perfil en la vista
+                            // Actualitzar la imatge de perfil a la vista
                             val imageView = view?.findViewById<ImageView>(R.id.imageViewPerf)
                             imageView?.let {
                                 Glide.with(requireContext())
                                     .load(imageUri)
                                     .into(it)
                             }
+                            Log.d(
+                                TAG,
+                                "Imatge pujada correctament i nom actualitzat a la base de dades."
+                            )
                         }
                         .addOnFailureListener { e ->
-                            Log.e(TAG, "Error al actualizar el campo imatge", e)
+                            Log.e(
+                                TAG,
+                                "Error en actualitzar el nom de la imatge a la base de dades.",
+                                e
+                            )
                         }
                 }
                 .addOnFailureListener { e ->
-                    Log.e(TAG, "Error al subir la imagen a Firebase Storage", e)
+                    Log.e(TAG, "Error en pujar la imatge a Firebase Storage.", e)
                 }
         }
     }

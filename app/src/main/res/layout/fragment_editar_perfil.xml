@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/LilaFosc"
+    tools:context=".Perfil">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewInici"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center|top"
+
+
+        android:layout_marginStart="15dp"
+
+        android:layout_marginTop="-20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/cardViewTop"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/border_radius_lila"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnIniciarSessio3"
+                style="@style/Theme.BotoNormal"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/border_radius_inici_blanc"
+                android:text="@string/perfil"
+                app:backgroundTint="@null"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <View
+                android:id="@+id/cardViewNom"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+
+                android:layout_marginStart="20dp"
+
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/border_radius_lila_clar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnIniciarSessio3" />
+
+            <TextView
+                android:id="@+id/nomText"
+                style="@style/Theme.TextPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginStart="40dp"
+
+
+                android:layout_marginEnd="40dp"
+                android:gravity="center"
+                android:text="@string/nom_usuari"
+                app:layout_constraintBottom_toBottomOf="@+id/cardViewNom"
+                app:layout_constraintEnd_toEndOf="@+id/cardViewNom"
+                app:layout_constraintStart_toStartOf="@+id/cardViewNom"
+                app:layout_constraintTop_toTopOf="@+id/cardViewNom"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/edPassw"
+                style="@style/Theme.editTextGris"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
+
+
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="15dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/Nom"
+                android:inputType="text"
+                app:backgroundTint="@color/grisClar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewNom" />
+
+            <Button
+                android:id="@+id/btnCancelar"
+                style="@style/Theme.BotoIniciRegister"
+
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/border_radius_lila"
+                android:text="@string/cancelar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.476"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/btnCancelar2"
+                style="@style/Theme.BotoIniciRegister"
+
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border_radius_lila"
+                android:text="@string/guardar"
+                app:layout_constraintBottom_toTopOf="@+id/btnCancelar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

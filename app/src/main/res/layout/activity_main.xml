@@ -40,7 +40,7 @@
         android:id="@+id/cardViewSh"
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:background="#8300FF"
+        android:background="@color/LilaFosc"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

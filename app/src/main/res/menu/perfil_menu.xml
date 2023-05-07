@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuCambiarImagen"
+        android:title="Cambiar Imatge" />
+    <item
+        android:id="@+id/menuEditarPerfil"
+        android:title="Editar Perfil" />
+</menu>

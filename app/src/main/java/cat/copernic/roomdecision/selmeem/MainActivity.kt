@@ -3,44 +3,34 @@ package cat.copernic.roomdecision.selmeem
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthSettings
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import cat.copernic.roomdecision.selmeem.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var edEmail: EditText
-    private lateinit var edPassw: EditText
-    private lateinit var btnIniciarSessio: Button
-    private lateinit var btnRecuperarContrasenya: Button
-    private lateinit var btnRegistrar: Button
-
-    private lateinit var auth:FirebaseAuth
-
-
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        // Infla el layout de l'activitat utilitzant binding
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         auth = Firebase.auth
 
-        edEmail = findViewById(R.id.edEmail)
-        edPassw = findViewById(R.id.edPassw)
-        btnIniciarSessio = findViewById(R.id.btnIniciarSessio)
-        btnRecuperarContrasenya = findViewById(R.id.btnRecuperarContrasenya)
-        btnRegistrar = findViewById(R.id.btnRegistrar)
-
-
+        // Vincula les vistes amb les propietats corresponents a través de binding
+        val edEmail = binding.edEmail
+        val edPassw = binding.edPassw
+        val btnIniciarSessio = binding.btnIniciarSessio
+        val btnRecuperarContrasenya = binding.btnRecuperarContrasenya
+        val btnRegistrar = binding.btnRegistrar
 
         checkIfUserIsLogged()
-
-
 
         btnIniciarSessio.setOnClickListener {
             val email = edEmail.text.toString()
@@ -64,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    // Comprova si l'usuari ja ha iniciat sessió anteriorment
     private fun checkIfUserIsLogged(){
         if(auth.currentUser != null){
             val currentUser = auth.currentUser
@@ -75,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Inicia sessió amb les credencials proporcionades per l'usuari
     private fun loginAc(email: String,password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
@@ -90,12 +81,11 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-
+    // Mostra una alerta en cas d'error en el login
     private fun showAlert(){
-
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
-        builder.setMessage("S'ha produit un error en el login")
+        builder.setMessage("S'ha produït un error en el login")
         builder.setPositiveButton("Aceptar",null)
         val dialog: AlertDialog = builder.create()
         dialog.show()

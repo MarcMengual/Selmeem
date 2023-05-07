@@ -9,6 +9,12 @@ import cat.copernic.roomdecision.selmeem.databinding.ActivityRegisterBinding
 import cat.copernic.roomdecision.selmeem.model.usuari
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
+
 
 class Register : AppCompatActivity() {
 
@@ -18,12 +24,15 @@ class Register : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Inflem el layout amb el binding
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
+        // Quan es fa clic al botó d'iniciar sessió, agafem les dades dels camps i cridem una funció per a guardar l'usuari a la base de dades
         binding.btnIniciarSessio.setOnClickListener {
             val nom = binding.edNom.text.toString()
             val password = binding.edPassw.text.toString()
@@ -33,71 +42,90 @@ class Register : AppCompatActivity() {
 
             if (password == repeatPassword) {
                 if (email.isNotEmpty() && password.isNotEmpty() && nom.isNotEmpty() && edat.isNotEmpty()) {
-                    guardarUsuarioEnBD(email, nom, edat)
+                    //La contrasenya te que tenir una majuscula minim, un numero minim i una longitud minima de 8 caracters
+                    val regex = Regex("^(?=.*[A-Z])(?=.*\\d).{8,}\$")
+                    if (password.matches(regex)) {
+                        // Cridem la funció per guardar l'usuari a la base de dades
+                        guardarUsuarioEnBD(email, nom, edat, password)
+                    } else {
+                        showAlert("La contrasenya te que contenir com a minim una lletra majúscula, un número i tenir 8 caracteres de longitud")
+
+                    }
                 } else {
-                    showAlert("Debes rellenar todos los campos")
+                    showAlert("No hi pot haver camps buits")
                 }
             } else {
-                showAlert("Las contraseñas no coinciden")
+                showAlert("Les contrasenyes no hi coincideixen")
             }
         }
 
-        binding.btnCancelar.setOnClickListener{
+        // Quan es fa clic al botó de cancel·lar, tornem a l'activitat principal
+        binding.btnCancelar.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
 
-    private fun guardarUsuarioEnBD(email: String, nom: String, edat: String) {
-        firestore.collection("usuarios").document(email).get().addOnSuccessListener { documentSnapshot ->
-            if (documentSnapshot.exists()) {
-                showAlert("El usuario ya existe")
-            } else {
-                val usuario = usuari(email, nom, edat, "default", emptyList())
-                firestore.collection("usuarios").document(email).set(usuario)
-                    .addOnSuccessListener {
-                        Toast.makeText(applicationContext, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show()
-                        register(email, binding.edPassw.text.toString())
+    // Funció per a guardar l'usuari a la base de dades
+    private fun guardarUsuarioEnBD(email: String, nom: String, edat: String, password: String) {
+        val db = FirebaseFirestore.getInstance()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val documentSnapshot = db.collection("usuarios").document(email).get().await()
+                if (documentSnapshot.exists()) {
+                    // Mostrem una alerta si l'usuari ja existeix
+                    withContext(Dispatchers.Main) {
+                        showAlert("L'usuari ja exsisteix")
                     }
-                    .addOnFailureListener {
-                        showAlert("Error al registrar usuario")
+                } else {
+                    // Creem un objecte  i guardem l'usuari a la base de dades
+                    val usuario = usuari(email, nom, edat, "default.PNG", emptyList())
+                    db.collection("usuarios").document(email).set(usuario).await()
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            applicationContext,
+                            "Usuari registrat correctament",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        // Cridem la funció per registrar l'usuari amb Firebase
+                        register(email, password)
                     }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    // Mostrem una alerta si hi ha hagut un error en accedir a la base de dades
+                    showAlert("Error al accedir a la base de dades")
+                }
             }
-        }.addOnFailureListener {
-            showAlert("Error al acceder a la base de datos")
         }
     }
 
     private fun register(email: String, password: String) {
-        auth.fetchSignInMethodsForEmail(email).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val signInMethods = task.result?.signInMethods ?: emptyList()
-                if (signInMethods.isNotEmpty()) {
-                    showAlert("El correo electrónico ya está en uso")
+        // Creamos un nuevo usuario con el correo y la contraseña
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Si el registro es exitoso, iniciamos sesión con el nuevo usuario
+                    val user = auth.currentUser
+                    val intent = Intent(this@Register, ContenidorFragments::class.java)
+                    intent.putExtra("email", email)
+                    startActivity(intent)
+                    finish()
                 } else {
-                    auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(this) { task ->
-                            if (task.isSuccessful) {
-                                val intent = Intent(this, ContenidorFragments::class.java)
-                                intent.putExtra("email", email)
-                                startActivity(intent)
-                                finish()
-                            } else {
-                                showAlert("Error al crear cuenta de usuario")
-                            }
-                        }
+                    // Si el registro falla, mostramos un mensaje de error
+                    showAlert("Error al registrar el usuario")
                 }
-            } else {
-                showAlert("Error al comprobar el correo electrónico")
             }
-        }
     }
 
+
     private fun showAlert(message: String) {
+        // Creem un diàleg d'alerta amb un missatge d'error personalitzat
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
         builder.setMessage(message)
-        builder.setPositiveButton("Aceptar", null)
+        builder.setPositiveButton("Acceptar", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }

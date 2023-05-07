@@ -20,17 +20,19 @@ class Pantalla_inicial : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflar el disseny del fragment a partir del binding generat a partir del disseny
         _binding = FragmentPantallaInicialBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Crear una llista d'elements per al RecyclerView
         val items = ArrayList<Item>()
         items.add(Item("Hola", "jaja", "", 9))
 
+        // Configurar el RecyclerView amb un LinearLayoutManager i un adaptador personalitzat
         binding.RVPublicacions.layoutManager = LinearLayoutManager(requireContext())
         binding.RVPublicacions.adapter = MyAdapter(requireContext(), items)
     }
@@ -38,6 +40,7 @@ class Pantalla_inicial : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        // Desvincular el binding per evitar fuites de memòria
         _binding = null
     }
 }

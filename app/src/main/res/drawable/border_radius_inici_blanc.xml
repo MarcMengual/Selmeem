@@ -6,7 +6,7 @@
 
         <stroke
             android:width="10px"
-            android:color="@color/lilaFosc2">
+            android:color="#7A00C1">
 
         </stroke>
 </shape>

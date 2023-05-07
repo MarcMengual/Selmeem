@@ -5,21 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageView
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
-import cat.copernic.roomdecision.selmeem.databinding.ActivityContenidorFragmentsBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
+
 
 class ContenidorFragments : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contenidor_fragments)
@@ -29,14 +24,14 @@ class ContenidorFragments : AppCompatActivity() {
         val email = intent.getStringExtra("email")
 
 
-        // Seteamos la toolbar
+        // Setegem la toolbar
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        // Habilitar botón de retroceso en la toolbar
+        // Habilitar botó de retrocés en la toolbar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        // Configuración del Navigation Drawer
+        // Configuració del Navigation Drawer
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         val navView = findViewById<NavigationView>(R.id.navigationView)
         navView.setNavigationItemSelectedListener { menuItem ->
@@ -44,7 +39,8 @@ class ContenidorFragments : AppCompatActivity() {
             when (id) {
                 R.id.toHome -> {
                     val fragment = Pantalla_inicial()
-                    supportFragmentManager.beginTransaction().replace(R.id.contenidorFragments1, fragment).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.contenidorFragments1, fragment).commit()
                     drawerLayout.closeDrawers()
                     return@setNavigationItemSelectedListener true
                 }
@@ -54,21 +50,23 @@ class ContenidorFragments : AppCompatActivity() {
                             putString("email", email)
                         }
                     }
-                    supportFragmentManager.beginTransaction().replace(R.id.contenidorFragments1, fragment).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.contenidorFragments1, fragment).commit()
                     drawerLayout.closeDrawers()
                     return@setNavigationItemSelectedListener true
                 }
 
                 R.id.action_pantalla_inicial_to_nova_Publicacio -> {
                     val fragment = Nova_Publicacio()
-                    supportFragmentManager.beginTransaction().replace(R.id.contenidorFragments1, fragment).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.contenidorFragments1, fragment).commit()
                     drawerLayout.closeDrawers()
                     return@setNavigationItemSelectedListener true
                 }
                 R.id.logOut -> {
                     auth.signOut()
 
-                    startActivity(Intent(this,MainActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }
             }
@@ -76,12 +74,12 @@ class ContenidorFragments : AppCompatActivity() {
         }
     }
 
-    // Configuración de la toolbar
+    // Configuració de la toolbar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         return true
     }
 
-    // Acción al presionar botón de retroceso en la toolbar
+    // Acció en prémer el botó de retrocés de la toolbar
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {

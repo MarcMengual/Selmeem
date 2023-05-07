@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#F5F5F5</color>
     <color name="LilaFosc">#B06EFF</color>
-    <color name="grisClar">#F0F0F0</color>
+    <color name="grisClar">#E3E3E3</color>
     <color name="blau">#00CDFF</color>
     <color name="lilaFosc2">#7D3CFF</color>
     <color name="blauClar">#E6FEFF</color>
     <color name="lilaClar">#E1BEFF</color>
     <color name="grisMoltClar">#F4F4F4</color>
+    <color name="grisB">#969696</color>
+
+
 </resources>
