@@ -89,36 +89,36 @@ class Nova_Publicacio : Fragment() {
     private fun createPublicacio(imatgeNom: String, email: String) {
         getNomCreador(object : NomCreadorCallback {
             override fun onCallback(nomCreador: String) {
-                // Obtener el número de documentos en la colección "publicaciones"
-                db.collection("publicacions")
-                    .get()
-                    .addOnSuccessListener { documents ->
-                        val id = documents.size() + 1
-                        val publicacio = publicacions(
-                            titol = titol.text.toString(),
-                            imatge = imatgeNom,
-                            nomCreador = nomCreador,
-                            dataPujada = Calendar.getInstance().time,
-                            like = 0,
-                            llistaLike = mutableListOf<String>(),
-                            llistaFavorits = mutableListOf<String>(),
-                            id = id,
-                        )
+                val publicacio = publicacions(
+                    titol = titol.text.toString(),
+                    imatge = imatgeNom,
+                    nomCreador = nomCreador,
+                    dataPujada = Calendar.getInstance().time,
+                    like = 0,
+                    llistaLike = mutableListOf<String>(),
+                    llistaFavorits = mutableListOf<String>(),
+                    id = "", // inicializar el valor del campo id como una cadena vacía
+                )
 
+                db.collection("publicacions")
+                    .add(publicacio)
+                    .addOnSuccessListener { documentReference ->
+                        val documentId = documentReference.id
                         db.collection("publicacions")
-                            .add(publicacio)
-                            .addOnSuccessListener { documentReference ->
-                                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                            .document(documentId)
+                            .update("id", documentId) // actualizar el valor del campo id con el nombre del documento
+                            .addOnSuccessListener {
+                                Log.d(TAG, "DocumentSnapshot added with ID: $documentId")
                                 val transaction = parentFragmentManager.beginTransaction()
                                 transaction.replace(R.id.contenidorFragments1, Pantalla_inicial())
                                 transaction.commit()
                             }
                             .addOnFailureListener { e ->
-                                Log.e(TAG, "Error adding document", e)
+                                Log.e(TAG, "Error updating document", e)
                             }
                     }
-                    .addOnFailureListener { exception ->
-                        Log.e(TAG, "Error obteniendo documentos: $exception")
+                    .addOnFailureListener { e ->
+                        Log.e(TAG, "Error adding document", e)
                     }
             }
         })
