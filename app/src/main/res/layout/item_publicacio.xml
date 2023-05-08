@@ -18,10 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="340dp"
         android:layout_below="@+id/titol"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="0dp" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        />
 
     <TextView
         android:id="@+id/de"
@@ -36,7 +37,7 @@
 
     <TextView
         android:id="@+id/personaProp"
-        android:layout_width="150dp"
+        android:layout_width="160dp"
         android:layout_height="30dp"
         android:layout_below="@+id/imatgePublicacio"
         android:layout_marginStart="10dp"
@@ -47,29 +48,36 @@
 
     <TextView
         android:id="@+id/like"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="-1dp"
+        android:layout_toStartOf="@+id/likeImage"
         android:layout_below="@+id/imatgePublicacio"
-        android:layout_toEndOf="@+id/likeImage"
-        android:textColor="#E1BEFF"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:gravity="center"
+        android:text="00"
+        android:textStyle="bold"
+        />
 
     <ImageView
         android:id="@+id/fav"
-        android:layout_width="40dp"
+        android:layout_width="35dp"
         android:layout_height="25dp"
         android:layout_below="@+id/imatgePublicacio"
-        android:layout_toStartOf="@+id/likeImage"
-        android:src="@drawable/fav" />
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="-1dp"
+        android:layout_toStartOf="@+id/like"
+        android:src="@drawable/save_desmarcat" />
 
     <ImageView
         android:id="@+id/likeImage"
-        android:layout_width="40dp"
+        android:layout_width="35dp"
         android:layout_height="25dp"
         android:layout_below="@+id/imatgePublicacio"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/like" />
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/like_desmarcat" />
 
 
 </RelativeLayout>

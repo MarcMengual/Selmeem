@@ -13,7 +13,7 @@
 
         <item
             android:id="@+id/action_pantalla_inicial_to_nova_Publicacio"
-            android:icon="@drawable/like"
+            android:icon="@drawable/like_desmarcat"
             android:title="Nova Publicaio" />
 
 

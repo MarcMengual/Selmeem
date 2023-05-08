@@ -1,5 +1,6 @@
 package cat.copernic.roomdecision.selmeem
 
+import Nova_Publicacio
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

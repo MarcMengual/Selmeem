@@ -77,6 +77,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RVPublicacions"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="32dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
