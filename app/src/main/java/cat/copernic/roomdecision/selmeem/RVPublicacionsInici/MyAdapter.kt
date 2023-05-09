@@ -46,40 +46,102 @@ class MyAdapter(private val publicacions: List<Publicacio>) : RecyclerView.Adapt
 
         val llistaLike = publicacion.llistaLike.toMutableList()
 
-        // Obtenemos el email del usuario actual
+        // Obtenim l'email de l'usuari actual
         val userEmail = mAuth.currentUser?.email
 
         val db = FirebaseFirestore.getInstance()
         val publicacionsRef = db.collection("publicacions")
 
-        // Verificamos si el email del usuario actual está en la lista de likes
+        // Verifiquem si l'email de l'usuari actual está en la lista de likes
         if (userEmail in llistaLike) {
-            // Si está, cambiamos la imagen del botón like
+            // Si está, cambiem l'imatge del botó like a "like_marcat"
             holder.likeImage.setImageResource(R.drawable.like_marcat)
 
-            // Desactivamos el listener del botón like
-            holder.likeImage.setOnClickListener(null)
+            // Agregem un listener per quan es presioni el botó "like" es tregui el like
+            holder.likeImage.setOnClickListener {
+                llistaLike.remove(userEmail)
+                publicacion.like -= 1
+                holder.likeTextView.text = publicacion.like.toString()
+                publicacionsRef.document(publicacion.id)
+                    .update("like", publicacion.like, "llistaLike", llistaLike)
+                    .addOnSuccessListener {
+                        // La actualizació es realitza correctament
+                    }
+                    .addOnFailureListener { e ->
+                        // La actualizació falla
+                    }
+                holder.likeImage.setImageResource(R.drawable.like_desmarcat)
+
+                // Agregem un listener per quan es presioni el botó "like" de nou, es sumi el like
+                holder.likeImage.setOnClickListener {
+                    llistaLike.add(userEmail!!)
+                    publicacion.like += 1
+                    holder.likeTextView.text = publicacion.like.toString()
+                    publicacionsRef.document(publicacion.id)
+                        .update("like", publicacion.like, "llistaLike", llistaLike)
+                        .addOnSuccessListener {
+                            // La actualizació es realitza correctament
+                        }
+                        .addOnFailureListener { e ->
+                            // L'actualizació falla
+                        }
+                    holder.likeImage.setImageResource(R.drawable.like_marcat)
+
+                    // Desactivem el listener del botó like
+                    holder.likeImage.setOnClickListener(null)
+                }
+            }
         } else {
-            // Si no está, mantenemos la imagen normal del botón like
+            // Si no está, mantenim l'imatge normal del botó "like" a "like_desmarcat"
             holder.likeImage.setImageResource(R.drawable.like_desmarcat)
 
-            // Añadimos un listener para que cuando se presione se agregue el like
+            // Agregem un listener per quan es presioie el botó "like", es sumi el like
             holder.likeImage.setOnClickListener {
                 llistaLike.add(userEmail!!)
                 publicacion.like += 1
                 holder.likeTextView.text = publicacion.like.toString()
-                publicacionsRef.document(publicacion.id).update("like", publicacion.like, "llistaLike", llistaLike)
+                publicacionsRef.document(publicacion.id)
+                    .update("like", publicacion.like, "llistaLike", llistaLike)
                     .addOnSuccessListener {
-                        // La actualización se realizó correctamente
+                        // La actualizació s'ha realitzat correctament
                     }
                     .addOnFailureListener { e ->
-                        // La actualización falló
+                        // La actualizació falla
                     }
                 holder.likeImage.setImageResource(R.drawable.like_marcat)
-                holder.likeImage.setOnClickListener(null)
+                holder.likeImage.setOnClickListener {
+                    llistaLike.remove(userEmail)
+                    publicacion.like -= 1
+                    holder.likeTextView.text = publicacion.like.toString()
+                    publicacionsRef.document(publicacion.id)
+                        .update("like", publicacion.like, "llistaLike", llistaLike)
+                        .addOnSuccessListener {
+                            // La actualizació s'ha realitzat correctament
+                        }
+                        .addOnFailureListener { e ->
+                            // La actualizació falla
+                        }
+                    holder.likeImage.setImageResource(R.drawable.like_desmarcat)
+                    holder.likeImage.setOnClickListener {
+                        llistaLike.add(userEmail!!)
+                        publicacion.like += 1
+                        holder.likeTextView.text = publicacion.like.toString()
+                        publicacionsRef.document(publicacion.id)
+                            .update("like", publicacion.like, "llistaLike", llistaLike)
+                            .addOnSuccessListener {
+                                // La actualizació s'ha realitzat correctament
+                            }
+                            .addOnFailureListener { e ->
+                                // La actualizació falla
+                            }
+                        holder.likeImage.setImageResource(R.drawable.like_marcat)
+                        holder.likeImage.setOnClickListener(null)
+                    }
+                }
             }
         }
     }
+
 
 
     override fun getItemCount() = publicacions.size
