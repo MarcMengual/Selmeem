@@ -104,6 +104,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="350dp"
                 android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -159,7 +160,7 @@
 
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:text="@string/publicacions"
+                android:text="@string/favorits"
                 app:backgroundTint="@null"
                 app:layout_constraintBottom_toTopOf="@+id/recyclerViewPerfil"
                 app:layout_constraintEnd_toEndOf="parent"

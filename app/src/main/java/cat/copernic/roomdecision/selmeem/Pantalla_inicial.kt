@@ -37,27 +37,42 @@ class Pantalla_inicial : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // Obtener las publicaciones de Firestore
+        // Obtenir les publicacions de Firestore
         db.collection("publicacions")
             .get()
             .addOnSuccessListener { result ->
-                // Convertir cada documento en un objeto Publicacion y añadirlo a la lista
+                // Convertir documents en un objecte Publicacions i introduirlo a la llista
                 publicacions = result.documents.mapNotNull { it.toObject(Publicacio::class.java) }
                 // Configurar el RecyclerView
                 recyclerView.adapter = MyAdapter(publicacions)
             }
 
         binding.btnIniciarSessio3.setOnClickListener {
-            val sortedPublicacions = publicacions.sortedByDescending { it.dataPujada }
-            recyclerView.adapter = MyAdapter(sortedPublicacions)
+            db.collection("publicacions")
+                .get()
+                .addOnSuccessListener { result ->
+                    // Convertir documents en un objecte Publicacions i introduirlo a la llista
+                    publicacions =
+                        result.documents.mapNotNull { it.toObject(Publicacio::class.java) }
+
+                    val sortedPublicacions = publicacions.sortedByDescending { it.dataPujada }
+                    recyclerView.adapter = MyAdapter(sortedPublicacions)
+                }
         }
 
         binding.btnIniciarSessio4.setOnClickListener {
-            val sortedPublicacions = publicacions.sortedByDescending { it.like }
-            recyclerView.adapter = MyAdapter(sortedPublicacions)
+            db.collection("publicacions")
+                .get()
+                .addOnSuccessListener { result ->
+                    // Convertir documents en un objecte Publicacions i introduirlo a la llista
+                    publicacions =
+                        result.documents.mapNotNull { it.toObject(Publicacio::class.java) }
+
+                    val sortedPublicacions = publicacions.sortedByDescending { it.like }
+                    recyclerView.adapter = MyAdapter(sortedPublicacions)
+                }
         }
     }
-
 
 
     override fun onDestroyView() {

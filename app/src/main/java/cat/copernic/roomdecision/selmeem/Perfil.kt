@@ -1,5 +1,6 @@
 package cat.copernic.roomdecision.selmeem
 
+import MyAdapter
 import android.app.Activity
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -14,8 +15,15 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import cat.copernic.roomdecision.selmeem.RVPublicacionsInici.Publicacio
+import cat.copernic.roomdecision.selmeem.databinding.FragmentPantallaInicialBinding
+import cat.copernic.roomdecision.selmeem.databinding.FragmentPerfilBinding
+import cat.copernic.roomdecision.selmeem.model.publicacions
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -32,6 +40,13 @@ class Perfil : Fragment() {
     private lateinit var email: String
     private lateinit var imageView: ImageView
     private lateinit var btnIniciarSessio3: Button
+    private var _binding: FragmentPerfilBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var publicacions: List<Publicacio>
+    private val db = FirebaseFirestore.getInstance()
+
+
 
     companion object {
         private const val REQUEST_CODE_PICK_IMAGE = 1
@@ -41,15 +56,36 @@ class Perfil : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Infla el disseny del fragment
-        return inflater.inflate(R.layout.fragment_perfil, container, false)
+        _binding = FragmentPerfilBinding.inflate(inflater, container, false)
+
+        recyclerView = binding.recyclerViewPerfil
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Inicialitza les variables de classe
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        // Obtenir les publicacions de Firestore
+
         email = FirebaseAuth.getInstance().currentUser?.email.toString()
+
+
+        db.collection("publicacions")
+            .whereArrayContains("llistaFavorits", email)
+            .get()
+            .addOnSuccessListener { result ->
+                // Convertir documents en un objecte Publicacions i introduirlo a la llista
+                publicacions = result.documents.mapNotNull { it.toObject(Publicacio::class.java) }
+                // Configurar el RecyclerView
+                recyclerView.adapter = MyAdapter(publicacions)
+            }
+
+        // Inicialitza les variables de classe
         imageView = view.findViewById<ImageView>(R.id.imageViewPerf)
         btnIniciarSessio3 = view.findViewById<Button>(R.id.btnIniciarSessio3)
 
@@ -160,5 +196,11 @@ class Perfil : Fragment() {
                     Log.e(TAG, "Error en pujar la imatge a Firebase Storage.", e)
                 }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Desvincular el binding para evitar fuites de memòria
+        _binding = null
     }
 }
