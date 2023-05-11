@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/titol"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18dp"
@@ -44,26 +44,26 @@
 
     <TextView
         android:id="@+id/de"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_width="30dp"
+        android:layout_height="25dp"
         android:layout_below="@+id/imatgePublicacio"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:text="@string/de"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/personaProp"
         android:layout_width="180dp"
         android:layout_height="30dp"
         android:layout_below="@+id/imatgePublicacio"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="6dp"
         android:layout_toEndOf="@+id/imatgePerfil"
         android:textColor="@color/black"
-        android:layout_marginTop="12dp"
-        android:textSize="20dp"
+        android:layout_marginTop="14dp"
+        android:textSize="18dp"
         android:textStyle="bold" />
 
     <ImageView
@@ -71,7 +71,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_below="@+id/imatgePublicacio"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="8dp"
         android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/de"
         android:layout_marginTop="12dp"
@@ -85,7 +85,7 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_below="@+id/imatgePublicacio"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="6dp"
         android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/de"
         android:layout_marginTop="9.5dp"
@@ -109,6 +109,18 @@
         />
 
     <ImageView
+        android:id="@+id/editPubli"
+        android:layout_width="20dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/imatgePublicacio"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="-1dp"
+        android:layout_toStartOf="@+id/fav"
+
+        android:src="@drawable/editar_publi" />
+
+
+    <ImageView
         android:id="@+id/fav"
         android:layout_width="40dp"
         android:layout_height="35dp"
@@ -128,8 +140,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/like_desmarcat" />
-
-
 
 
 </RelativeLayout>

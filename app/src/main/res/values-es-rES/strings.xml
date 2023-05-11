@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="favorits">Favoritos</string>
+    <string name="Likes">Has recibido un Like!</string>
+    <string name="DescripcioNoti">Un usuario ha dado like a tu post!</string>
+    <string name="de">De:</string>
+    <string name="publicacions">Publicaciones</string>
+    <string name="nom_usuari">Nombre Usuario</string>
+    <string name="crear_compte">Crear Cuenta</string>
+    <string name="encara_no_tens_compte">No tienes cuenta?</string>
+    <string name="todo">TODO</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="guardar">Guardar</string>
+    <string name="editar_publicacio">Editar Publicacion</string>
+    <string name="publicar">Publicar</string>
+    <string name="penjar_imatge">Subir Imagen</string>
+    <string name="nova_publicacio">Nueva Publicacion</string>
+    <string name="perfil">Perfil</string>
+    <string name="populars">Popular</string>
+    <string name="novetats">Nuevo</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="recuperar_contrasenya">Recuperar Contraseña</string>
+    <string name="edat">Año</string>
+    <string name="Nom">Nombre</string>
+    <string name="confirmar_contrasenya">Confirmar Contraseña</string>
+    <string name="nom">Nombre</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="iniciar_sessio">Iniciar Sesion</string>
+    <string name="email">Email</string>
+    <string name="contrasenya">Contraseña</string>
+</resources>

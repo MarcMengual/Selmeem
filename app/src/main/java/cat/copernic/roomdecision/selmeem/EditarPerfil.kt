@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
 import cat.copernic.roomdecision.selmeem.databinding.FragmentEditarPerfilBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -21,7 +20,7 @@ class EditarPerfil : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Infla el layout del fragmento
+        // Inflar el layout del fragment
         binding = FragmentEditarPerfilBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -49,13 +48,12 @@ class EditarPerfil : Fragment() {
 
             // Comprova que el camp no estigui buit
             if (edPassw.text.toString().isEmpty()) {
-                Toast.makeText(activity, "El camp no pot estar buit", Toast.LENGTH_SHORT).show()
+                // Mostrar missatge d'error si hi ha un error en actualitzar el nom
+                Utils.mostrarError(requireContext(), "El camp no pot estar buit!")
             } else {
                 // Actualitza el nom d'usuari a Firebase
                 db.collection("usuarios").document(email!!).update("nom", edPassw.text.toString())
                     .addOnSuccessListener {
-                        Toast.makeText(activity, "Nom actualitzat correctament", Toast.LENGTH_SHORT)
-                            .show()
                         // Torna a la pantalla de perfil
                         val PerfilFragment = Perfil()
                         parentFragmentManager.beginTransaction()
@@ -64,8 +62,8 @@ class EditarPerfil : Fragment() {
                             .commit()
                     }
                     .addOnFailureListener {
-                        Toast.makeText(activity, "Error en actualitzar el nom", Toast.LENGTH_SHORT)
-                            .show()
+                        // Mostrar missatge d'error si hi ha un error en actualitzar el nom
+                        Utils.mostrarError(requireContext(), "Error actualitzant el nom")
                     }
             }
         }

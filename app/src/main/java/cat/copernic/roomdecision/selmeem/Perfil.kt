@@ -2,11 +2,9 @@ package cat.copernic.roomdecision.selmeem
 
 import MyAdapter
 import android.app.Activity
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.roomdecision.selmeem.RVPublicacionsInici.Publicacio
-import cat.copernic.roomdecision.selmeem.databinding.FragmentPantallaInicialBinding
 import cat.copernic.roomdecision.selmeem.databinding.FragmentPerfilBinding
-import cat.copernic.roomdecision.selmeem.model.publicacions
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -45,7 +41,6 @@ class Perfil : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var publicacions: List<Publicacio>
     private val db = FirebaseFirestore.getInstance()
-
 
 
     companion object {
@@ -81,9 +76,14 @@ class Perfil : Fragment() {
             .addOnSuccessListener { result ->
                 // Convertir documents en un objecte Publicacions i introduirlo a la llista
                 publicacions = result.documents.mapNotNull { it.toObject(Publicacio::class.java) }
-                // Configurar el RecyclerView
-                recyclerView.adapter = MyAdapter(publicacions)
+                val activity = getActivity()
+                if (activity is ContenidorFragments) {
+                    val sortedPublicacions = publicacions.sortedByDescending { it.dataPujada }
+                    val contenidor = requireActivity() as ContenidorFragments
+                    recyclerView.adapter = MyAdapter(sortedPublicacions, contenidor)
+                }
             }
+
 
         // Inicialitza les variables de classe
         imageView = view.findViewById<ImageView>(R.id.imageViewPerf)
@@ -153,7 +153,7 @@ class Perfil : Fragment() {
         }
     }
 
-    // Método que s'executa quan l'usuari ha seleccionat una imatge de la galería
+    // Métode que s'executa quan l'usuari ha seleccionat una imatge de la galería
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -179,21 +179,15 @@ class Perfil : Fragment() {
                                     .load(imageUri)
                                     .into(it)
                             }
-                            Log.d(
-                                TAG,
-                                "Imatge pujada correctament i nom actualitzat a la base de dades."
-                            )
                         }
                         .addOnFailureListener { e ->
-                            Log.e(
-                                TAG,
-                                "Error en actualitzar el nom de la imatge a la base de dades.",
-                                e
-                            )
+                            // Mostrar missatge d'error si hi ha un error en actualitzar l'imatge
+                            Utils.mostrarError(requireContext(), "Error actualitzant l'imatge")
                         }
                 }
                 .addOnFailureListener { e ->
-                    Log.e(TAG, "Error en pujar la imatge a Firebase Storage.", e)
+                    // Mostrar missatge d'error si hi ha un error al pujar l'imatge
+                    Utils.mostrarError(requireContext(), "Error al pujar imatge")
                 }
         }
     }

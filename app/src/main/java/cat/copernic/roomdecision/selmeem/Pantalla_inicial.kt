@@ -17,6 +17,7 @@ class Pantalla_inicial : Fragment() {
     private var _binding: FragmentPantallaInicialBinding? = null
     private val binding get() = _binding!!
 
+
     private lateinit var publicacions: List<Publicacio>
     private lateinit var recyclerView: RecyclerView
 
@@ -29,6 +30,7 @@ class Pantalla_inicial : Fragment() {
         // Inflar el disseny del fragment a partir del binding generat a partir del disseny
         _binding = FragmentPantallaInicialBinding.inflate(inflater, container, false)
         recyclerView = binding.RVPublicacions
+
         return binding.root
     }
 
@@ -44,7 +46,12 @@ class Pantalla_inicial : Fragment() {
                 // Convertir documents en un objecte Publicacions i introduirlo a la llista
                 publicacions = result.documents.mapNotNull { it.toObject(Publicacio::class.java) }
                 // Configurar el RecyclerView
-                recyclerView.adapter = MyAdapter(publicacions)
+                val activity = getActivity()
+                if (activity is ContenidorFragments) {
+                    val sortedPublicacions = publicacions.sortedByDescending { it.dataPujada }
+                    val contenidor = requireActivity() as ContenidorFragments
+                    recyclerView.adapter = MyAdapter(sortedPublicacions, contenidor)
+                }
             }
 
         binding.btnIniciarSessio3.setOnClickListener {
@@ -55,8 +62,12 @@ class Pantalla_inicial : Fragment() {
                     publicacions =
                         result.documents.mapNotNull { it.toObject(Publicacio::class.java) }
 
-                    val sortedPublicacions = publicacions.sortedByDescending { it.dataPujada }
-                    recyclerView.adapter = MyAdapter(sortedPublicacions)
+                    val activity = getActivity()
+                    if (activity is ContenidorFragments) {
+                        val sortedPublicacions = publicacions.sortedByDescending { it.dataPujada }
+                        val contenidor = requireActivity() as ContenidorFragments
+                        recyclerView.adapter = MyAdapter(sortedPublicacions, contenidor)
+                    }
                 }
         }
 
@@ -69,7 +80,12 @@ class Pantalla_inicial : Fragment() {
                         result.documents.mapNotNull { it.toObject(Publicacio::class.java) }
 
                     val sortedPublicacions = publicacions.sortedByDescending { it.like }
-                    recyclerView.adapter = MyAdapter(sortedPublicacions)
+                    val activity = getActivity()
+                    if (activity is ContenidorFragments) {
+                        val sortedPublicacions = publicacions.sortedByDescending { it.dataPujada }
+                        val contenidor = requireActivity() as ContenidorFragments
+                        recyclerView.adapter = MyAdapter(sortedPublicacions, contenidor)
+                    }
                 }
         }
     }
@@ -77,7 +93,7 @@ class Pantalla_inicial : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        // Desvincular el binding para evitar fuites de memòria
+        // Desvincular el binding per evitar fuites de memòria
         _binding = null
     }
 }

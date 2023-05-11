@@ -1,10 +1,8 @@
 package cat.copernic.roomdecision.selmeem
 
 import android.content.Intent
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import cat.copernic.roomdecision.selmeem.databinding.ActivityRegisterBinding
 import cat.copernic.roomdecision.selmeem.model.usuari
 import com.google.firebase.auth.FirebaseAuth
@@ -48,14 +46,19 @@ class Register : AppCompatActivity() {
                         // Cridem la funció per guardar l'usuari a la base de dades
                         guardarUsuarioEnBD(email, nom, edat, password)
                     } else {
-                        showAlert("La contrasenya te que contenir com a minim una lletra majúscula, un número i tenir 8 caracteres de longitud")
+                        Utils.mostrarAlerta(
+                            this,
+                            "Error",
+                            "La contrasenya te que contenir com a minim una lletra majúscula, un número i tenir 8 caracteres de longitud"
+                        )
 
                     }
                 } else {
-                    showAlert("No hi pot haver camps buits")
+                    Utils.mostrarAlerta(this, "Error", "No hi pot haver camps buits")
+
                 }
             } else {
-                showAlert("Les contrasenyes no hi coincideixen")
+                Utils.mostrarAlerta(this, "Error", "Les contrasenyes no hi coincideixen")
             }
         }
 
@@ -83,11 +86,6 @@ class Register : AppCompatActivity() {
                     val usuario = usuari(email, nom, edat, "default.PNG", emptyList())
                     db.collection("usuarios").document(email).set(usuario).await()
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            applicationContext,
-                            "Usuari registrat correctament",
-                            Toast.LENGTH_SHORT
-                        ).show()
                         // Cridem la funció per registrar l'usuari amb Firebase
                         register(email, password)
                     }
@@ -102,31 +100,25 @@ class Register : AppCompatActivity() {
     }
 
     private fun register(email: String, password: String) {
-        // Creamos un nuevo usuario con el correo y la contraseña
+        // Creem un nou usuari amb el correo i la contrasenya
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Si el registro es exitoso, iniciamos sesión con el nuevo usuario
+                    // Si el registre es exitos, iniciem sesió amb el nou usuari
                     val user = auth.currentUser
                     val intent = Intent(this@Register, ContenidorFragments::class.java)
                     intent.putExtra("email", email)
                     startActivity(intent)
                     finish()
                 } else {
-                    // Si el registro falla, mostramos un mensaje de error
-                    showAlert("Error al registrar el usuario")
+                    // Si el registre falla, mostrem un error
+                    Utils.mostrarAlerta(this, "Error", "Error al registrar el usuario")
                 }
             }
     }
 
 
     private fun showAlert(message: String) {
-        // Creem un diàleg d'alerta amb un missatge d'error personalitzat
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Error")
-        builder.setMessage(message)
-        builder.setPositiveButton("Acceptar", null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
+        Utils.mostrarAlerta(this, "Error", message)
     }
 }
