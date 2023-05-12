@@ -3,6 +3,7 @@ package cat.copernic.roomdecision.selmeem
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import cat.copernic.roomdecision.selmeem.databinding.ActivityRegisterBinding
 import cat.copernic.roomdecision.selmeem.model.usuari
 import com.google.firebase.auth.FirebaseAuth
@@ -32,6 +33,11 @@ class Register : AppCompatActivity() {
 
         // Quan es fa clic al botó d'iniciar sessió, agafem les dades dels camps i cridem una funció per a guardar l'usuari a la base de dades
         binding.btnIniciarSessio.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Confirmar registro")
+            builder.setMessage(getString(R.string.AvisPolitiques))
+            builder.setPositiveButton("Aceptar") { dialog, which ->
+
             val nom = binding.edNom.text.toString()
             val password = binding.edPassw.text.toString()
             val repeatPassword = binding.edPassw2.text.toString()
@@ -61,12 +67,27 @@ class Register : AppCompatActivity() {
                 Utils.mostrarAlerta(this, "Error", "Les contrasenyes no hi coincideixen")
             }
         }
+            builder.setNegativeButton("No aceptar") { dialog, which ->
+
+
+            }
+            builder.setNeutralButton("Leer políticas") { dialog, which ->
+                // Redirigir al usuario a la página de políticas de privacidad
+                startActivity(Intent(this, Politiques::class.java))
+                finish()
+            }
+
+
 
         // Quan es fa clic al botó de cancel·lar, tornem a l'activitat principal
         binding.btnCancelar.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+        val dialog = builder.create()
+        dialog.show()
+
+    }
     }
 
     // Funció per a guardar l'usuari a la base de dades

@@ -27,10 +27,11 @@
     <string name="publicacions">Publicacions</string>
     <string name="de">De:</string>
     <string name="open_drawer" translatable="false">Abrir menú</string>
-    <string name="close_drawer" translatable="false">Cerrar menú</string>
+    <string name="close_drawer" translatable="false">Tancar menú</string>
     <string name="favorits">Favorits</string>
     <string name="Likes">Has rebut un Like!</string>
     <string name="DescripcioNoti">Un usuari ha donat like al teu post!</string>
+    <string name="AvisPolitiques">Al registrarse en Selmeem confirmes que has llegit y aceptes les polítiques de privacitat. En cas de no haber lleít les polítiques et facilitem l\'acces.</string>
 
 
 </resources>

@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="cat.copernic.roomdecision.selmeem">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
 
     <application
         android:allowBackup="true"
@@ -19,6 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Selmeem"
         tools:targetApi="31">
+        <activity
+            android:name=".Politiques"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
 
         <service
             android:name=".MyFirebaseMessagingService"
@@ -50,8 +56,6 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/Likes" />
-
-
-</application>
+    </application>
 
 </manifest>

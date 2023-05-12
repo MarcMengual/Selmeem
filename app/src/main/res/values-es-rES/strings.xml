@@ -28,4 +28,5 @@
     <string name="iniciar_sessio">Iniciar Sesion</string>
     <string name="email">Email</string>
     <string name="contrasenya">Contraseña</string>
+    <string name="AvisPolitiques">Al registrarse en Selmeem confirmas que has leido y acceptas las politicas de privacidad. En caso de no haber leido las politicas te facilitamos su acceso.</string>
 </resources>

@@ -79,7 +79,7 @@ class MyAdapter(
                 .addOnSuccessListener { document ->
                     userName = document.getString("nom")
 
-                    if (userName != null && publicacion.nomCreador == userName) {
+                    if (userName != null && publicacion.nomCreador == userName || userEmail == "mengualmarcgesti@gmail.com") {
                         holder.imatgeEdit.visibility = View.VISIBLE
                         holder.imatgeEdit.setOnClickListener {
                             val editarPublicacioFragment = Editar_publicacio(publicacion.id)
