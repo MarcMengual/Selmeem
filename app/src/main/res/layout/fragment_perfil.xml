@@ -76,6 +76,23 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="TouchTargetSizeCheck" />
 
+            <ImageButton
+                android:id="@+id/idiom"
+                style="@style/Theme.BotoPetit"
+
+                android:layout_marginStart="-250dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/border_radius_inici_blanc"
+                android:src="@drawable/idiomaglobal"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toTopOf="@+id/cardViewImatgePerfil"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TouchTargetSizeCheck" />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewImatgePerfil"
                 android:layout_width="100dp"

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuCatalan"
+        android:title="Català"
+        android:icon="@drawable/catalaflag"
+        />
+    <item
+        android:id="@+id/menuCastellano"
+        android:title="Castellano"
+        android:icon="@drawable/castellaflag"
+        />
+    <item
+        android:id="@+id/menuIngles"
+        android:title="English"
+        android:icon="@drawable/regneflag"
+        />
+</menu>

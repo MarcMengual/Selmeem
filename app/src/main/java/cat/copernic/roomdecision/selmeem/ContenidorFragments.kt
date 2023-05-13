@@ -11,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -88,7 +89,7 @@ class ContenidorFragments : AppCompatActivity() {
 
         imatgeAdmin.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            builder.setMessage("Aquest icone significa que ets administrador de l'aplicació")
+            builder.setMessage(getString(R.string.adminMissatge))
                 .setCancelable(true)
                 .setPositiveButton("Aceptar", null)
             val dialog = builder.create()
@@ -194,4 +195,6 @@ class ContenidorFragments : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 }

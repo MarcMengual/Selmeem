@@ -20,7 +20,7 @@
     <string name="novetats">Nuevo</string>
     <string name="cancelar">Cancelar</string>
     <string name="recuperar_contrasenya">Recuperar Contraseña</string>
-    <string name="edat">Año</string>
+    <string name="edat">Edad</string>
     <string name="Nom">Nombre</string>
     <string name="confirmar_contrasenya">Confirmar Contraseña</string>
     <string name="nom">Nombre</string>
@@ -39,4 +39,8 @@
     <string name="errorActualitzarPublicacions">Error al actualitzar publicaciones</string>
     <string name="errorAlCrearPublicacio">Error al crear publicacio</string>
     <string name="editarBoto">✎</string>
+    <string name="inici">Inicio</string>
+    <string name="nova_publicaio">Nueva Publicacion</string>
+    <string name="tancar_sessio">Cerrar Session</string>
+    <string name="adminMissatge">Este icono significa que eres administrador de la aplicacin</string>
 </resources>

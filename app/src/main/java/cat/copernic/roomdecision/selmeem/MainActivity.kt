@@ -1,13 +1,17 @@
 package cat.copernic.roomdecision.selmeem
 
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.PopupMenu
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import cat.copernic.roomdecision.selmeem.databinding.ActivityMainBinding
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +27,24 @@ class MainActivity : AppCompatActivity() {
 
         // Inicialitza l'objecte auth amb l'autenticació de Firebase
         auth = Firebase.auth
+
+        // Recuperar el idioma seleccionat de las SharedPreferences
+        val prefs = applicationContext.getSharedPreferences("Idioma", Context.MODE_PRIVATE)
+        val idioma = prefs.getString("idioma", "default")
+
+        // Actualitzar la configuració regional de la aplicació
+        val locale = if (idioma == "default") {
+            // Si no s'ha seleccionat un idioma, utilizar el idioma del sistema
+            Locale.getDefault()
+        } else {
+            // Si s'ha seleccionat un idioma, utilizar el idioma seleccionat
+            Locale(idioma)
+        }
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        resources.updateConfiguration(config, resources.displayMetrics)
+
 
 
         // Vincula les vistes amb les propietats corresponents a través de binding
@@ -59,6 +81,79 @@ class MainActivity : AppCompatActivity() {
         btnRegistrar.setOnClickListener {
             startActivity(Intent(this, Register::class.java))
             finish()
+        }
+
+        binding.idiom.setOnClickListener { view ->
+            val popupMenu = PopupMenu(this, view)
+            popupMenu.menuInflater.inflate(R.menu.menu_idioma, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.menuCatalan -> {
+                        // Canviar la configuració regional a català
+                        val locale = Locale("ca")
+                        Locale.setDefault(locale)
+                        val config = Configuration()
+                        config.locale = locale
+                        resources.updateConfiguration(config, resources.displayMetrics)
+
+                        // Guardar el idioma seleccionat en les SharedPreferences
+                        val prefs = this.getSharedPreferences("Idioma", Context.MODE_PRIVATE)
+                        prefs.edit().putString("idioma", locale.language).apply()
+
+
+                        // Recrea l'activitat perquè els canvis d'idioma tinguin efecte
+                        this.recreate()
+                        true
+                    }
+                    R.id.menuCastellano -> {
+                        // Canviar la configuració regional a castellà
+                        val locale = Locale("es")
+                        Locale.setDefault(locale)
+                        val config = Configuration()
+                        config.locale = locale
+                        resources.updateConfiguration(config, resources.displayMetrics)
+
+                        binding.idiom.setImageResource(R.drawable.castellaflag)
+
+                        // Guardar el idioma seleccionat en les SharedPreferences
+                        val prefs = this.getSharedPreferences("Idioma", Context.MODE_PRIVATE)
+                        prefs.edit().putString("idioma", locale.language).apply()
+
+                        // Recrea l'activitat perquè els canvis d'idioma tinguin efecte
+                        this.recreate()
+                        true
+                    }
+                    R.id.menuIngles -> {
+                        // Canviar la configuració regional a anglès
+                        val locale = Locale("en")
+                        Locale.setDefault(locale)
+                        val config = Configuration()
+                        config.locale = locale
+                        resources.updateConfiguration(config, resources.displayMetrics)
+
+                        // Guardar el idioma seleccionat en les SharedPreferences
+                        val prefs = this.getSharedPreferences("Idioma", Context.MODE_PRIVATE)
+                        prefs.edit().putString("idioma", locale.language).apply()
+
+                        binding.idiom.setImageResource(R.drawable.regneflag)
+
+                        // Recrea l'activitat perquè els canvis d'idioma tinguin efecte
+                        this.recreate()
+
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            popupMenu.show()
+        }
+
+        val currentLocale = resources.configuration.locale
+        when (currentLocale) {
+            Locale("ca") -> binding.idiom.setImageResource(R.drawable.catalaflag)
+            Locale("es") -> binding.idiom.setImageResource(R.drawable.castellaflag)
+            else -> binding.idiom.setImageResource(R.drawable.regneflag)
         }
 
 

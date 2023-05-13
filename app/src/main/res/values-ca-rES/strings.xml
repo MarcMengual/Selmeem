@@ -1,15 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Selmeem</string>
     <string name="contrasenya">Contrasenya</string>
     <string name="email">Email</string>
     <string name="iniciar_sessio">Iniciar Sessio</string>
     <string name="registrarse">Registrarse</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="nom">Nom</string>
     <string name="confirmar_contrasenya">Confirmar Contrasenya</string>
     <string name="Nom">Nom</string>
-    <string name="edat">Edat</string>
     <string name="recuperar_contrasenya">Recuperar Contrasenya</string>
+    <string name="edat">Edat</string>
     <string name="cancelar">Cancelar</string>
     <string name="novetats">Novetats</string>
     <string name="populars">Populars</string>
@@ -26,8 +25,6 @@
     <string name="nom_usuari">Nom Usuari</string>
     <string name="publicacions">Publicacions</string>
     <string name="de">De:</string>
-    <string name="open_drawer" translatable="false">Abrir menú</string>
-    <string name="close_drawer" translatable="false">Tancar menú</string>
     <string name="favorits">Favorits</string>
     <string name="Likes">Has rebut un Like!</string>
     <string name="DescripcioNoti">Un usuari ha donat like al teu post!</string>
@@ -46,5 +43,4 @@
     <string name="tancar_sessio">Tancar Sessio</string>
     <string name="editarBoto">✎</string>
     <string name="adminMissatge">Aquest icone significa que ets administrador de l\'aplicació</string>
-    <string name="idioma" translatable="false">Idioma</string>
 </resources>

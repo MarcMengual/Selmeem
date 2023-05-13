@@ -25,7 +25,7 @@
     <string name="iniciar_sessio">Log In</string>
     <string name="email">Email</string>
     <string name="contrasenya">Password</string>
-    <string name="favorits">Favorites</string>
+    <string name="favorits">Saved</string>
     <string name="Likes">You have received a Like!</string>
     <string name="DescripcioNoti">A user has liked your post!</string>
     <string name="AvisPolitiques">When you register with Selmeem, you confirm that you have read and accepted the privacy policy. In case you have not read the policy, we provide you with access to it.</string>
@@ -39,4 +39,8 @@
     <string name="errorCorreo">Error with the email</string>
     <string name="errorAlCrearPublicacio">Error creating publications</string>
     <string name="editarBoto">✎</string>
+    <string name="inici">Start</string>
+    <string name="tancar_sessio">Log Out</string>
+    <string name="nova_publicaio">" New Post"</string>
+    <string name="adminMissatge">This icon means that you are an administrator of the application</string>
 </resources>

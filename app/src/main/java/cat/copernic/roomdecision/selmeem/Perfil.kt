@@ -2,7 +2,9 @@ package cat.copernic.roomdecision.selmeem
 
 import MyAdapter
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,6 +31,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.util.*
 
 
 class Perfil : Fragment() {
@@ -66,6 +69,7 @@ class Perfil : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView.layoutManager = LinearLayoutManager(context)
+
 
         // Obtenir les publicacions de Firestore
 
@@ -154,6 +158,84 @@ class Perfil : Fragment() {
             popupMenu.show()
 
         }
+
+
+        binding.idiom.setOnClickListener { view ->
+            val popupMenu = PopupMenu(requireContext(), view)
+            popupMenu.menuInflater.inflate(R.menu.menu_idioma, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.menuCatalan -> {
+                        // Canviar la configuració regional a català
+                        val locale = Locale("ca")
+                        Locale.setDefault(locale)
+                        val config = Configuration()
+                        config.locale = locale
+                        resources.updateConfiguration(config, resources.displayMetrics)
+
+                        // Guardar el idioma seleccionat en les SharedPreferences
+                        val prefs = requireContext().getSharedPreferences("Idioma", Context.MODE_PRIVATE)
+                        prefs.edit().putString("idioma", locale.language).apply()
+
+
+                        // Recrea l'activitat perquè els canvis d'idioma tinguin efecte
+                        requireActivity().recreate()
+                        true
+                    }
+                    R.id.menuCastellano -> {
+                        // Canviar la configuració regional a castellà
+                        val locale = Locale("es")
+                        Locale.setDefault(locale)
+                        val config = Configuration()
+                        config.locale = locale
+                        resources.updateConfiguration(config, resources.displayMetrics)
+
+                        binding.idiom.setImageResource(R.drawable.castellaflag)
+
+                        // Guardar el idioma seleccionat en les SharedPreferences
+                        val prefs = requireContext().getSharedPreferences("Idioma", Context.MODE_PRIVATE)
+                        prefs.edit().putString("idioma", locale.language).apply()
+
+                        // Recrea l'activitat perquè els canvis d'idioma tinguin efecte
+                        requireActivity().recreate()
+                        true
+                    }
+                    R.id.menuIngles -> {
+                        // Canviar la configuració regional a anglès
+                        val locale = Locale("en")
+                        Locale.setDefault(locale)
+                        val config = Configuration()
+                        config.locale = locale
+                        resources.updateConfiguration(config, resources.displayMetrics)
+
+                        // Guardar el idioma seleccionat en les SharedPreferences
+                        val prefs = requireContext().getSharedPreferences("Idioma", Context.MODE_PRIVATE)
+                        prefs.edit().putString("idioma", locale.language).apply()
+
+                        binding.idiom.setImageResource(R.drawable.regneflag)
+
+                        // Recrea l'activitat perquè els canvis d'idioma tinguin efecte
+                        requireActivity().recreate()
+
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            popupMenu.show()
+
+
+        }
+
+
+        val currentLocale = resources.configuration.locale
+        when (currentLocale) {
+            Locale("ca") -> binding.idiom.setImageResource(R.drawable.catalaflag)
+            Locale("es") -> binding.idiom.setImageResource(R.drawable.castellaflag)
+            else -> binding.idiom.setImageResource(R.drawable.regneflag)
+        }
+
     }
 
     // Métode que s'executa quan l'usuari ha seleccionat una imatge de la galería
