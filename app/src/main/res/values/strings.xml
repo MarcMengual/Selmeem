@@ -44,6 +44,7 @@
     <string name="inici">Inici</string>
     <string name="nova_publicaio">Nova Publicaio</string>
     <string name="tancar_sessio">Tancar Sessio</string>
+    <string name="editarBoto">✎</string>
 
 
 </resources>

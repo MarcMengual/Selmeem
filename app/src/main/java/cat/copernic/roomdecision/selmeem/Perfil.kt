@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
@@ -36,6 +37,7 @@ class Perfil : Fragment() {
     private lateinit var email: String
     private lateinit var imageView: ImageView
     private lateinit var btnIniciarSessio3: Button
+    private lateinit var editarPerf: ImageButton
     private var _binding: FragmentPerfilBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
@@ -88,6 +90,7 @@ class Perfil : Fragment() {
         // Inicialitza les variables de classe
         imageView = view.findViewById<ImageView>(R.id.imageViewPerf)
         btnIniciarSessio3 = view.findViewById<Button>(R.id.btnIniciarSessio3)
+        editarPerf = view.findViewById<ImageButton>(R.id.editarPerf)
 
         // Obté la referència a la col·lecció "usuarios"
         val db = Firebase.firestore
@@ -122,7 +125,7 @@ class Perfil : Fragment() {
         }
 
         // Afegir un listener de clic al botó de perfil
-        btnIniciarSessio3.setOnClickListener { view ->
+        editarPerf.setOnClickListener { view ->
             val popupMenu = PopupMenu(requireContext(), view)
             popupMenu.menuInflater.inflate(R.menu.perfil_menu, popupMenu.menu)
 

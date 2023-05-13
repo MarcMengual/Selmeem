@@ -38,4 +38,5 @@
     <string name="errorActualitzarPublicacions">Error updating publications</string>
     <string name="errorCorreo">Error with the email</string>
     <string name="errorAlCrearPublicacio">Error creating publications</string>
+    <string name="editarBoto">✎</string>
 </resources>

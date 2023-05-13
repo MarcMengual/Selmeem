@@ -32,6 +32,16 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="Theme.BotoPetit" parent="Widget.Material3.Button">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/border_radius_inici_blanc</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="Theme.TextPerfil" parent="Widget.Material3.Button">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">18sp</item>

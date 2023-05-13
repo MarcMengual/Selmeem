@@ -38,4 +38,5 @@
     <string name="errorCorreo">Error con el correo</string>
     <string name="errorActualitzarPublicacions">Error al actualitzar publicaciones</string>
     <string name="errorAlCrearPublicacio">Error al crear publicacio</string>
+    <string name="editarBoto">✎</string>
 </resources>
