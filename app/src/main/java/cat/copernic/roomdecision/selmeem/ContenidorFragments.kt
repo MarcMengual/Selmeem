@@ -1,30 +1,40 @@
 package cat.copernic.roomdecision.selmeem
 
 import Nova_Publicacio
+import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 class ContenidorFragments : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contenidor_fragments)
 
         auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
-        val email = intent.getStringExtra("email")
-
+        val email = FirebaseAuth.getInstance().currentUser?.email
 
         // Setegem la toolbar
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -36,6 +46,63 @@ class ContenidorFragments : AppCompatActivity() {
         // Configuració del Navigation Drawer
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         val navView = findViewById<NavigationView>(R.id.navigationView)
+
+        // Obteneim la referencia al header del NavigationView
+        val headerView = navView.getHeaderView(0)
+        val profileImage = headerView.findViewById<ImageView>(R.id.profile_image)
+        val profileName = headerView.findViewById<TextView>(R.id.profile_name)
+        val profilEmail = headerView.findViewById<TextView>(R.id.profile_email)
+
+
+        // Obtenim el nom de l'arxiu de la imatge de Firestore
+        val userDocRef = db.collection("usuarios").document(email!!)
+        userDocRef.get().addOnSuccessListener { document ->
+            if (document != null && document.exists()) {
+                val imageName = document.getString("imatge")
+                if (imageName != null) {
+                    val storageRef = Firebase.storage.reference.child("$imageName")
+                    storageRef.getBytes(1024 * 1024).addOnSuccessListener { bytes ->
+                        val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                        profileImage.setImageBitmap(bitmap)
+                    }.addOnFailureListener { exception ->
+                        Log.e(TAG, "Error al descarregar l'imatge del Storage: $exception")
+                    }
+                }
+            } else {
+                Log.d(TAG, "El document no existeix o no s'ha trobat")
+            }
+        }
+
+        // Obtenim el nom de l'usuari desde Firestore
+        userDocRef.get().addOnSuccessListener { document ->
+            if (document != null && document.exists()) {
+                val name = document.getString("nom")
+                if (name != null) {
+                    // Establecer el nombre del usuario en el TextView correspondiente
+                    profileName.text = name
+                }
+            } else {
+                Log.d(TAG, "El document no existeix")
+            }
+        }.addOnFailureListener { exception ->
+            Log.e(TAG, "Error al obtenir el document de l'usuari: $exception")
+        }
+
+        // Obtenim el gmail de l'usuari desde Firestore
+        userDocRef.get().addOnSuccessListener { document ->
+            if (document != null && document.exists()) {
+                val name = document.getString("email")
+                if (name != null) {
+                    // Fiquem l'email de l'usuari en el TextView corresponent.
+                    profilEmail.text = name
+                }
+            } else {
+                Log.d(TAG, "El document no existeix")
+            }
+        }.addOnFailureListener { exception ->
+            Log.e(TAG, "Error al obtener el document de l'usuari: $exception")
+        }
+
         navView.setNavigationItemSelectedListener { menuItem ->
             val id = menuItem.itemId
             when (id) {

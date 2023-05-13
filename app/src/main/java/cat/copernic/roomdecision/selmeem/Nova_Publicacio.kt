@@ -75,7 +75,7 @@ class Nova_Publicacio : Fragment() {
             uploadTask.addOnSuccessListener {
                 storageRef.downloadUrl.addOnSuccessListener { uri ->
                     val imatgeNom =
-                        storageRef.name // Obtener el nom de la imatge del StorageReference
+                        storageRef.name // Obtenir el nom de la imatge del StorageReference
                     createPublicacio(imatgeNom, email)
                 }
             }.addOnFailureListener { e ->

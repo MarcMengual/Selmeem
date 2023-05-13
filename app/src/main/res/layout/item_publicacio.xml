@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/border_radius_inici_blanc">
+    android:background="@drawable/border_radius_inici_blanc"
+    android:layout_marginBottom="10dp">
 
     <TextView
         android:id="@+id/titol"
