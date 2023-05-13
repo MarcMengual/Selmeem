@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import androidx.appcompat.app.AlertDialog
 
 
 class ContenidorFragments : AppCompatActivity() {
@@ -34,7 +36,7 @@ class ContenidorFragments : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        val email = FirebaseAuth.getInstance().currentUser?.email
+        val emailDb = FirebaseAuth.getInstance().currentUser?.email
 
         // Setegem la toolbar
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -52,10 +54,11 @@ class ContenidorFragments : AppCompatActivity() {
         val profileImage = headerView.findViewById<ImageView>(R.id.profile_image)
         val profileName = headerView.findViewById<TextView>(R.id.profile_name)
         val profilEmail = headerView.findViewById<TextView>(R.id.profile_email)
+        val imatgeAdmin = headerView.findViewById<ImageView>(R.id.adminMode)
 
 
         // Obtenim el nom de l'arxiu de la imatge de Firestore
-        val userDocRef = db.collection("usuarios").document(email!!)
+        val userDocRef = db.collection("usuarios").document(emailDb!!)
         userDocRef.get().addOnSuccessListener { document ->
             if (document != null && document.exists()) {
                 val imageName = document.getString("imatge")
@@ -72,6 +75,30 @@ class ContenidorFragments : AppCompatActivity() {
                 Log.d(TAG, "El document no existeix o no s'ha trobat")
             }
         }
+
+        val user = FirebaseAuth.getInstance().currentUser
+
+        //Si comptes com administrador (que es ficar el correo) et sortira l'imatge
+
+        if (user?.email == "mengualmarcgesti@gmail.com") {
+            imatgeAdmin.visibility = View.VISIBLE
+        } else {
+            imatgeAdmin.visibility = View.GONE
+        }
+
+        imatgeAdmin.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage("Aquest icone significa que ets administrador de l'aplicació")
+                .setCancelable(true)
+                .setPositiveButton("Aceptar", null)
+            val dialog = builder.create()
+            dialog.show()
+        }
+
+
+
+
+
 
         // Obtenim el nom de l'usuari desde Firestore
         userDocRef.get().addOnSuccessListener { document ->
@@ -116,7 +143,7 @@ class ContenidorFragments : AppCompatActivity() {
                 R.id.action_pantalla_inicial_to_perfil -> {
                     val fragment = Perfil().apply {
                         arguments = Bundle().apply {
-                            putString("email", email)
+                            putString("email", emailDb)
                         }
                     }
                     supportFragmentManager.beginTransaction()
