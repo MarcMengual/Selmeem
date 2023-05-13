@@ -1,42 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    xmlns:constraintlayout="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
 
-    <group
-        android:id="@+id/si"
+
+    <group android:id="@+id/si"
         android:checkableBehavior="single">
 
         <item
             android:id="@+id/toHome"
-            android:title="Inici" />
+            android:icon="@drawable/homeboto"
+            android:title="@string/inici" />
 
         <item
             android:id="@+id/action_pantalla_inicial_to_nova_Publicacio"
-            android:icon="@drawable/like_desmarcat"
-            android:title="Nova Publicaio" />
-
-
+            android:icon="@drawable/nouboto"
+            android:title="@string/nova_publicaio" />
     </group>
-    <group
-        android:id="@+id/no"
+
+    <group android:id="@+id/no"
         android:checkableBehavior="single">
 
         <item
             android:id="@+id/action_pantalla_inicial_to_perfil"
-            android:icon="@drawable/fav"
-            android:title="Perfil" />
-
+            android:icon="@drawable/perfil"
+            android:title="@string/perfil" />
     </group>
-    <group
-        android:id="@+id/op"
+
+    <group android:id="@+id/op"
         android:checkableBehavior="single">
 
         <item
             android:id="@+id/logOut"
-            android:icon="@drawable/border_radius_lila"
-            android:title="Tancar Sessio" />
-
+            android:icon="@drawable/logout"
+            android:title="@string/tancar_sessio" />
     </group>
 
 </menu>

@@ -53,7 +53,7 @@ class Nova_Publicacio : Fragment() {
             if (titol.text.isNotEmpty() && selectedImageUri != null) {
                 uploadImage()
             } else {
-                Log.w(TAG, "El titol i la imatge son obligatoris.")
+                Log.w(TAG, getString(R.string.titolImatgeObligatoris))
             }
         }
 
@@ -80,11 +80,11 @@ class Nova_Publicacio : Fragment() {
                 }
             }.addOnFailureListener { e ->
                 // Mostrar missatge d'error al pujar imatge al Storage
-                Utils.mostrarError(requireContext(), "Error en pujar la imatge")
+                Utils.mostrarError(requireContext(), getString(R.string.errorrPujarImatge))
             }
         } else {
             // Mostrar missatge d'error amb el correo
-            Utils.mostrarError(requireContext(), "Error amb el correo")
+            Utils.mostrarError(requireContext(), getString(R.string.errorCorreo))
 
         }
     }
@@ -93,13 +93,11 @@ class Nova_Publicacio : Fragment() {
     // Funció per crear una nova publicació a la base de dades
     private fun createPublicacio(imatgeNom: String, email: String) {
         // Obtenir el nom del creador a través d'un callback
-        getNomCreador(object : NomCreadorCallback {
-            override fun onCallback(nomCreador: String) {
                 // Crear una nova publicació amb les dades proporcionades
                 val publicacio = publicacions(
                     titol = titol.text.toString(),
                     imatge = imatgeNom,
-                    nomCreador = nomCreador,
+                    nomCreador = email,
                     dataPujada = Calendar.getInstance().time,
                     like = 0,
                     llistaLike = mutableListOf<String>(),
@@ -128,16 +126,16 @@ class Nova_Publicacio : Fragment() {
                                 // Mostrar missatge d'error al actualitzar publicacions
                                 Utils.mostrarError(
                                     requireContext(),
-                                    "Error al actualitzar publicacions"
+                                    getString(R.string.errorActualitzarPublicacions)
                                 )
                             }
                     }
                     .addOnFailureListener { e ->
                         // Mostrar missatge d'error al crear publicacio
-                        Utils.mostrarError(requireContext(), "Error al crear publicacio")
+                        Utils.mostrarError(requireContext(), getString(R.string.errorAlCrearPublicacio))
                     }
-            }
-        })
+
+
     }
 
     // Funció per obtenir el nom del creador a partir del correu electrònic
@@ -160,7 +158,7 @@ class Nova_Publicacio : Fragment() {
                 }
                 .addOnFailureListener { exception ->
                     // Si hi ha hagut un error al obtenir el document de l'usuari, mostrar un missatge d'error
-                    Utils.mostrarError(requireContext(), "Error al actualitzar publicacions")
+                    Utils.mostrarError(requireContext(), getString(R.string.errorActualitzarPublicacions))
                 }
         }
 

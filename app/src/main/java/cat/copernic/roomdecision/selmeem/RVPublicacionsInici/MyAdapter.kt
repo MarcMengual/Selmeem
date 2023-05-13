@@ -58,8 +58,8 @@ class MyAdapter(
         }
 
         // Establir el títol, el nom del creador i el nombre de "likes" de la publicació
+
         holder.titolTextView.text = publicacion.titol
-        holder.personaPropTextView.text = publicacion.nomCreador
         holder.likeTextView.text = publicacion.like.toString()
 
         // Convertir les llistes de "likes" i de favorits a mutables per poder modificar-les
@@ -74,24 +74,29 @@ class MyAdapter(
         var userName: String? = null
 
         if (userEmail != null) {
-            val docRef = db.collection("usuarios").document(userEmail)
+            val docRef = db.collection("usuarios").document(publicacion.nomCreador)
             docRef.get()
                 .addOnSuccessListener { document ->
                     userName = document.getString("nom")
+                    holder.personaPropTextView.text = userName
 
-                    if (userName != null && publicacion.nomCreador == userName || userEmail == "mengualmarcgesti@gmail.com") {
-                        holder.imatgeEdit.visibility = View.VISIBLE
-                        holder.imatgeEdit.setOnClickListener {
-                            val editarPublicacioFragment = Editar_publicacio(publicacion.id)
-                            activity.supportFragmentManager.beginTransaction()
-                                .replace(R.id.contenidorFragments1, editarPublicacioFragment)
-                                .commit()
-                        }
-
-
-                    }
                 }
         }
+
+
+            if (userEmail != null && publicacion.nomCreador == userEmail || userEmail == "mengualmarcgesti@gmail.com") {
+                holder.imatgeEdit.visibility = View.VISIBLE
+                holder.imatgeEdit.setOnClickListener {
+                    val editarPublicacioFragment = Editar_publicacio(publicacion.id)
+                    activity.supportFragmentManager.beginTransaction()
+                        .replace(R.id.contenidorFragments1, editarPublicacioFragment)
+                        .commit()
+                }
+
+
+            }
+
+
         // Verifiquem si l'email de l'usuari actual está en la lista de likes
         if (userEmail in llistaLike) {
             // Si está, cambiem l'imatge del botó like a "like_marcat"
@@ -257,10 +262,11 @@ class MyAdapter(
                     }
                 }
             }
+
         }
         // Obtener la imagen de perfil del creador de la publicación
         val usersRef = db.collection("usuarios")
-        val query = usersRef.whereEqualTo("nom", publicacion.nomCreador)
+        val query = usersRef.whereEqualTo("email", publicacion.nomCreador)
 
         query.get().addOnSuccessListener { result ->
             if (!result.isEmpty) {

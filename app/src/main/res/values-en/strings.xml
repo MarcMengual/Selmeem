@@ -29,4 +29,13 @@
     <string name="Likes">You have received a Like!</string>
     <string name="DescripcioNoti">A user has liked your post!</string>
     <string name="AvisPolitiques">When you register with Selmeem, you confirm that you have read and accepted the privacy policy. In case you have not read the policy, we provide you with access to it.</string>
+    <string name="errorContrasenyes">The passwords do not match</string>
+    <string name="errorCampsBuits">There can\'t be empty fields.</string>
+    <string name="noAceptar">Decline</string>
+    <string name="llegirPolitiques">Read policies</string>
+    <string name="titolImatgeObligatoris">The title and image are not mandatory</string>
+    <string name="errorrPujarImatge">Error uploading image</string>
+    <string name="errorActualitzarPublicacions">Error updating publications</string>
+    <string name="errorCorreo">Error with the email</string>
+    <string name="errorAlCrearPublicacio">Error creating publications</string>
 </resources>

@@ -29,4 +29,13 @@
     <string name="email">Email</string>
     <string name="contrasenya">Contraseña</string>
     <string name="AvisPolitiques">Al registrarse en Selmeem confirmas que has leido y acceptas las politicas de privacidad. En caso de no haber leido las politicas te facilitamos su acceso.</string>
+    <string name="errorContrasenyes">Las contrasenyas no coinciden</string>
+    <string name="errorCampsBuits">No puede haver campos vacios</string>
+    <string name="noAceptar">No aceptar</string>
+    <string name="llegirPolitiques">Leer políticas</string>
+    <string name="titolImatgeObligatoris">El titulo y la imagen no son obligatorios.</string>
+    <string name="errorrPujarImatge">Error en subir la imagen</string>
+    <string name="errorCorreo">Error con el correo</string>
+    <string name="errorActualitzarPublicacions">Error al actualitzar publicaciones</string>
+    <string name="errorAlCrearPublicacio">Error al crear publicacio</string>
 </resources>

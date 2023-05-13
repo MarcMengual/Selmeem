@@ -32,6 +32,18 @@
     <string name="Likes">Has rebut un Like!</string>
     <string name="DescripcioNoti">Un usuari ha donat like al teu post!</string>
     <string name="AvisPolitiques">Al registrarse en Selmeem confirmes que has llegit y aceptes les polítiques de privacitat. En cas de no haber lleít les polítiques et facilitem l\'acces.</string>
+    <string name="errorContrasenyes">Les contrasenyes no hi coincideixen</string>
+    <string name="errorCampsBuits">No hi pot haver camps buits</string>
+    <string name="noAceptar">No aceptar</string>
+    <string name="llegirPolitiques">Llegir polítiques</string>
+    <string name="titolImatgeObligatoris">El titol i la imatge son obligatoris.</string>
+    <string name="errorrPujarImatge">Error en pujar la imatge</string>
+    <string name="errorCorreo">Error amb el correo</string>
+    <string name="errorActualitzarPublicacions">Error al actualitzar publicacions</string>
+    <string name="errorAlCrearPublicacio">Error al crear publicacio</string>
+    <string name="inici">Inici</string>
+    <string name="nova_publicaio">Nova Publicaio</string>
+    <string name="tancar_sessio">Tancar Sessio</string>
 
 
 </resources>

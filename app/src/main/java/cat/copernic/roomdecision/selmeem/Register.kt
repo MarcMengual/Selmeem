@@ -38,56 +38,66 @@ class Register : AppCompatActivity() {
             builder.setMessage(getString(R.string.AvisPolitiques))
             builder.setPositiveButton("Aceptar") { dialog, which ->
 
-            val nom = binding.edNom.text.toString()
-            val password = binding.edPassw.text.toString()
-            val repeatPassword = binding.edPassw2.text.toString()
-            val email = binding.edEmail2.text.toString()
-            val edat = binding.edEdat.text.toString()
+                val nom = binding.edNom.text.toString()
+                val password = binding.edPassw.text.toString()
+                val repeatPassword = binding.edPassw2.text.toString()
+                val email = binding.edEmail2.text.toString()
+                val edat = binding.edEdat.text.toString()
 
-            if (password == repeatPassword) {
-                if (email.isNotEmpty() && password.isNotEmpty() && nom.isNotEmpty() && edat.isNotEmpty()) {
-                    //La contrasenya te que tenir una majuscula minim, un numero minim i una longitud minima de 8 caracters
-                    val regex = Regex("^(?=.*[A-Z])(?=.*\\d).{8,}\$")
-                    if (password.matches(regex)) {
-                        // Cridem la funció per guardar l'usuari a la base de dades
-                        guardarUsuarioEnBD(email, nom, edat, password)
+                if (password == repeatPassword) {
+                    if (email.isNotEmpty() && password.isNotEmpty() && nom.isNotEmpty() && edat.isNotEmpty()) {
+                        // Verificar si el format del correo electrónic utiliza una expresió regular
+                        val emailRegex = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
+                        if (email.matches(emailRegex)) {
+                            //La contrasenya te que tenir una majuscula minim, un numero minim i una longitud minima de 8 caracters
+                            val regex = Regex("^(?=.*[A-Z])(?=.*\\d).{8,}\$")
+                            if (password.matches(regex)) {
+                                // Cridem la funció per guardar l'usuari a la base de dades
+                                guardarUsuarioEnBD(email, nom, edat, password)
+                            } else {
+                                Utils.mostrarAlerta(
+                                    this,
+                                    "Error",
+                                    "La contrasenya te que contenir com a minim una lletra majúscula, un número i tenir 8 caracteres de longitud"
+                                )
+                            }
+                        } else {
+                            Utils.mostrarAlerta(
+                                this,
+                                "Error",
+                                "El correu electrònic no té un format vàlid"
+                            )
+                        }
                     } else {
-                        Utils.mostrarAlerta(
-                            this,
-                            "Error",
-                            "La contrasenya te que contenir com a minim una lletra majúscula, un número i tenir 8 caracteres de longitud"
-                        )
-
+                        Utils.mostrarAlerta(this, "Error", getString(R.string.errorCampsBuits))
                     }
                 } else {
-                    Utils.mostrarAlerta(this, "Error", "No hi pot haver camps buits")
-
+                    Utils.mostrarAlerta(this, "Error", getString(R.string.errorContrasenyes))
                 }
-            } else {
-                Utils.mostrarAlerta(this, "Error", "Les contrasenyes no hi coincideixen")
+
             }
-        }
-            builder.setNegativeButton("No aceptar") { dialog, which ->
+
+
+            builder.setNegativeButton(getString(R.string.noAceptar)) { dialog, which ->
 
 
             }
-            builder.setNeutralButton("Leer políticas") { dialog, which ->
+            builder.setNeutralButton(getString(R.string.llegirPolitiques)) { dialog, which ->
                 // Redirigir al usuario a la página de políticas de privacidad
                 startActivity(Intent(this, Politiques::class.java))
                 finish()
             }
 
 
+            // Quan es fa clic al botó de cancel·lar, tornem a l'activitat principal
+            binding.btnCancelar.setOnClickListener {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
+            val dialog = builder.create()
+            dialog.show()
 
-        // Quan es fa clic al botó de cancel·lar, tornem a l'activitat principal
-        binding.btnCancelar.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
         }
-        val dialog = builder.create()
-        dialog.show()
-
-    }
     }
 
     // Funció per a guardar l'usuari a la base de dades
@@ -126,7 +136,6 @@ class Register : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Si el registre es exitos, iniciem sesió amb el nou usuari
-                    val user = auth.currentUser
                     val intent = Intent(this@Register, ContenidorFragments::class.java)
                     intent.putExtra("email", email)
                     startActivity(intent)

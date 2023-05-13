@@ -79,10 +79,9 @@ class Pantalla_inicial : Fragment() {
                     publicacions =
                         result.documents.mapNotNull { it.toObject(Publicacio::class.java) }
 
-                    val sortedPublicacions = publicacions.sortedByDescending { it.like }
                     val activity = getActivity()
                     if (activity is ContenidorFragments) {
-                        val sortedPublicacions = publicacions.sortedByDescending { it.dataPujada }
+                        val sortedPublicacions = publicacions.sortedByDescending { it.like }
                         val contenidor = requireActivity() as ContenidorFragments
                         recyclerView.adapter = MyAdapter(sortedPublicacions, contenidor)
                     }
