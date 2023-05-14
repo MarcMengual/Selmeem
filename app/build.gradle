@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
+    id("org.jetbrains.dokka") version "1.8.10"
+
 }
 
 android {
@@ -11,8 +13,8 @@ android {
         applicationId "cat.copernic.roomdecision.selmeem"
         minSdk 21
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.1 The Hud Update"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -71,6 +73,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.window:window:1.0.0-alpha05'
+
 
 
 

@@ -4,8 +4,19 @@ import android.app.AlertDialog
 import android.content.Context
 import android.util.Log
 
+/**
+ * Utils
+ *
+ * @constructor Create empty Utils
+ */
 class Utils {
     companion object {
+        /**
+         * Mostrar error
+         *
+         * @param context
+         * @param mensaje
+         */
         fun mostrarError(context: Context, mensaje: String) {
             // Lógica para mostrar el error, por ejemplo:
             Log.e("ERROR", mensaje)

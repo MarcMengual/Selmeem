@@ -8,10 +8,10 @@
     <TextView
         android:id="@+id/titol"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <View
@@ -46,25 +46,25 @@
     <TextView
         android:id="@+id/de"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/imatgePublicacio"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:text="@string/de"
         android:textColor="@color/black"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/personaProp"
-        android:layout_width="180dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/imatgePublicacio"
         android:layout_marginStart="6dp"
         android:layout_toEndOf="@+id/imatgePerfil"
         android:textColor="@color/black"
         android:layout_marginTop="14dp"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <ImageView
@@ -96,51 +96,57 @@
 
     <TextView
         android:id="@+id/like"
-        android:layout_width="40dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="-1dp"
         android:layout_toStartOf="@+id/likeImage"
         android:layout_below="@+id/imatgePublicacio"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="19sp"
         android:gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="000"
         android:textStyle="bold"
+        android:contentDescription="@string/Likes"
+
         />
 
     <ImageView
         android:id="@+id/editPubli"
-        android:layout_width="20dp"
-        android:layout_height="35dp"
+        android:layout_width="28dp"
+        android:layout_height="48dp"
         android:layout_below="@+id/imatgePublicacio"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="-1dp"
         android:layout_toStartOf="@+id/fav"
+        android:contentDescription="Edit"
 
         android:src="@drawable/editar_publi" />
 
 
     <ImageView
         android:id="@+id/fav"
-        android:layout_width="40dp"
-        android:layout_height="35dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_below="@+id/imatgePublicacio"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="-1dp"
         android:layout_toStartOf="@+id/like"
+        android:contentDescription="Save"
 
         android:src="@drawable/save_desmarcat" />
 
     <ImageView
         android:id="@+id/likeImage"
-        android:layout_width="40dp"
-        android:layout_height="35dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_below="@+id/imatgePublicacio"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/like_desmarcat" />
+        android:layout_marginTop="3dp"
+        android:src="@drawable/like_desmarcat"
+        android:contentDescription="LikeButton"
+        />
 
 
 </RelativeLayout>

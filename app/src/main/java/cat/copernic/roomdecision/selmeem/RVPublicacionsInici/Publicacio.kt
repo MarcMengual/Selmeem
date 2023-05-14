@@ -10,7 +10,6 @@ data class Publicacio(
     val dataPujada: Date = Date(),
     val llistaLike: MutableList<String> = mutableListOf(),
     val llistaFavorits: MutableList<String> = mutableListOf(),
-    val id: String = "",
-    var usuarioYaDioLike: Boolean = false
+    val id: String = ""
 
 )

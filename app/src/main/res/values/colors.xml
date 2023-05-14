@@ -2,7 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#F5F5F5</color>
-    <color name="LilaFosc">#B06EFF</color>
+    <color name="LilaFosc">#BC84FF</color>
+    <color name="LilaFoscBoto">#8A38ED</color>
     <color name="grisClar">#E3E3E3</color>
     <color name="blau">#00CDFF</color>
     <color name="lilaFosc2">#7D3CFF</color>

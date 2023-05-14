@@ -9,6 +9,12 @@ import cat.copernic.roomdecision.selmeem.databinding.FragmentEditarPublicacioBin
 import com.google.firebase.firestore.FirebaseFirestore
 
 
+/**
+ * Editar_publicacio
+ *
+ * @property publicacioId
+ * @constructor Create empty Editar_publicacio
+ */
 class Editar_publicacio(private val publicacioId: String) : Fragment() {
 
     private lateinit var binding: FragmentEditarPublicacioBinding
@@ -24,6 +30,12 @@ class Editar_publicacio(private val publicacioId: String) : Fragment() {
         return binding.root
     }
 
+    /**
+     * On view created
+     *
+     * @param view
+     * @param savedInstanceState
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         db = FirebaseFirestore.getInstance()

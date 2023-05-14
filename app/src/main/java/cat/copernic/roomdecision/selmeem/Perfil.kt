@@ -34,6 +34,11 @@ import kotlinx.coroutines.withContext
 import java.util.*
 
 
+/**
+ * Perfil
+ *
+ * @constructor Create empty Perfil
+ */
 class Perfil : Fragment() {
 
     // Declaració de variables de classe
@@ -52,6 +57,14 @@ class Perfil : Fragment() {
         private const val REQUEST_CODE_PICK_IMAGE = 1
     }
 
+    /**
+     * On create view
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,6 +78,12 @@ class Perfil : Fragment() {
         return binding.root
     }
 
+    /**
+     * On view created
+     *
+     * @param view
+     * @param savedInstanceState
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -238,7 +257,13 @@ class Perfil : Fragment() {
 
     }
 
-    // Métode que s'executa quan l'usuari ha seleccionat una imatge de la galería
+    /**
+     * On activity result
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */// Métode que s'executa quan l'usuari ha seleccionat una imatge de la galería
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -277,6 +302,10 @@ class Perfil : Fragment() {
         }
     }
 
+    /**
+     * On destroy view
+     *
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         // Desvincular el binding para evitar fuites de memòria

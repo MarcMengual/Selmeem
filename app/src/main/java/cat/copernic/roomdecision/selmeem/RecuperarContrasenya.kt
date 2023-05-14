@@ -15,6 +15,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
+/**
+ * Recuperar contrasenya
+ *
+ * @constructor Create empty Recuperar contrasenya
+ */
 class RecuperarContrasenya : AppCompatActivity() {
 
     // Declarem els elements de la UI que farem servir
@@ -25,6 +30,11 @@ class RecuperarContrasenya : AppCompatActivity() {
     // Declarem l'objecte d'autenticació de Firebase
     private lateinit var auth: FirebaseAuth
 
+    /**
+     * On create
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recuperar_contrasenya)

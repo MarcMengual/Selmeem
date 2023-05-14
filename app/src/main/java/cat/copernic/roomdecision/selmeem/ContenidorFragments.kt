@@ -3,6 +3,7 @@ package cat.copernic.roomdecision.selmeem
 import Nova_Publicacio
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
@@ -22,20 +24,35 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import androidx.appcompat.app.AlertDialog
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.window.layout.WindowMetricsCalculator
 
 
+/**
+ * Contenidor fragments
+ *
+ * @constructor Create empty Contenidor fragments
+ */
 class ContenidorFragments : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
-
+    /**
+     * On create
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contenidor_fragments)
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
+
 
         val emailDb = FirebaseAuth.getInstance().currentUser?.email
 
@@ -95,10 +112,6 @@ class ContenidorFragments : AppCompatActivity() {
             val dialog = builder.create()
             dialog.show()
         }
-
-
-
-
 
 
         // Obtenim el nom de l'usuari desde Firestore
@@ -169,7 +182,7 @@ class ContenidorFragments : AppCompatActivity() {
             }
             false
         }
-        // Establecer ic_launcher como icono del botón de navegación
+        // Establir ic_launcher com icone del botó de navegació
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, R.string.open_drawer, R.string.close_drawer
         )
@@ -179,12 +192,22 @@ class ContenidorFragments : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_launchermenu)
     }
 
-    // Configuració de la toolbar
+    /**
+     * On create options menu
+     *
+     * @param menu
+     * @return
+     */// Configuració de la toolbar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         return true
     }
 
-    // Acció en prémer el botó de retrocés de la toolbar
+    /**
+     * On options item selected
+     *
+     * @param item
+     * @return
+     */// Acció en prémer el botó de retrocés de la toolbar
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
@@ -195,6 +218,6 @@ class ContenidorFragments : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 }
+
+

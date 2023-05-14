@@ -17,6 +17,13 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
 
+/**
+ * My adapter
+ *
+ * @property publicacions
+ * @property activity
+ * @constructor Create empty My adapter
+ */
 class MyAdapter(
     private val publicacions: List<Publicacio>,
     private val activity: ContenidorFragments
@@ -24,6 +31,13 @@ class MyAdapter(
     private val storageReference = Firebase.storage.reference
     private val mAuth = FirebaseAuth.getInstance()
 
+    /**
+     * Publicacion view holder
+     *
+     * @constructor
+     *
+     * @param itemView
+     */
     class PublicacionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titolTextView: TextView = itemView.findViewById(R.id.titol)
         val personaPropTextView: TextView = itemView.findViewById(R.id.personaProp)

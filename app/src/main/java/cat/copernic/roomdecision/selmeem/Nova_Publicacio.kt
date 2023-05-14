@@ -22,6 +22,11 @@ import cat.copernic.roomdecision.selmeem.Utils
 import cat.copernic.roomdecision.selmeem.model.publicacions
 
 
+/**
+ * Nova_publicacio
+ *
+ * @constructor Create empty Nova_publicacio
+ */
 class Nova_Publicacio : Fragment() {
 
     val PICK_IMAGE_REQUEST = 1
@@ -33,6 +38,14 @@ class Nova_Publicacio : Fragment() {
 
     private var selectedImageUri: Uri? = null
 
+    /**
+     * On create view
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -90,7 +103,12 @@ class Nova_Publicacio : Fragment() {
     }
 
 
-    // Funció per crear una nova publicació a la base de dades
+    /**
+     * Create publicacio
+     *
+     * @param imatgeNom
+     * @param email
+     */// Funció per crear una nova publicació a la base de dades
     private fun createPublicacio(imatgeNom: String, email: String) {
         // Obtenir el nom del creador a través d'un callback
                 // Crear una nova publicació amb les dades proporcionades
@@ -164,11 +182,28 @@ class Nova_Publicacio : Fragment() {
 
     }
 
+    /**
+     * Nom creador callback
+     *
+     * @constructor Create empty Nom creador callback
+     */
     interface NomCreadorCallback {
+        /**
+         * On callback
+         *
+         * @param nomCreador
+         */
         fun onCallback(nomCreador: String)
     }
 
 
+    /**
+     * On activity result
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.BotoIniciRegister" parent="Widget.Material3.Button">
-        <item name="android:layout_width">250dp</item>
-        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
         <item name="android:textSize">19sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:background">@drawable/border_radius_lila</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/border_radius_lila_boto</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:gravity">center</item>
 
     </style>
 
     <style name="Theme.BotoIniciLogin" parent="Widget.Material3.Button">
-        <item name="android:layout_width">200dp</item>
-        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
         <item name="android:textSize">19sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:background">@drawable/border_radius_lila</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/border_radius_lila_boto</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:gravity">center</item>
 
 
@@ -35,8 +35,8 @@
 
     <style name="Theme.BotoNormal" parent="Widget.Material3.Button">
         <item name="android:layout_width">150dp</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:background">@drawable/border_radius_inici_blanc</item>
@@ -44,9 +44,9 @@
     </style>
 
     <style name="Theme.BotoPetit" parent="Widget.Material3.Button">
-        <item name="android:layout_width">40dp</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:textSize">25dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:background">@drawable/border_radius_inici_blanc</item>
@@ -63,7 +63,7 @@
     <style name="Theme.titols" parent="Widget.Material3.CheckedTextView">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">40sp</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
 </resources>

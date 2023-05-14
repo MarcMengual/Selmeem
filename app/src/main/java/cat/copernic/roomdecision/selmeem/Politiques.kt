@@ -11,6 +11,11 @@ import cat.copernic.roomdecision.selmeem.databinding.ActivityPolitiquesBinding
 private lateinit var binding: ActivityPolitiquesBinding
 
 
+/**
+ * Politiques
+ *
+ * @constructor Create empty Politiques
+ */
 class Politiques : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

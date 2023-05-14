@@ -10,11 +10,24 @@ import cat.copernic.roomdecision.selmeem.databinding.FragmentEditarPerfilBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
+/**
+ * Editar perfil
+ *
+ * @constructor Create empty Editar perfil
+ */
 class EditarPerfil : Fragment() {
 
     private lateinit var edPassw: EditText
     private lateinit var binding: FragmentEditarPerfilBinding
 
+    /**
+     * On create view
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,6 +38,12 @@ class EditarPerfil : Fragment() {
         return binding.root
     }
 
+    /**
+     * On view created
+     *
+     * @param view
+     * @param savedInstanceState
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

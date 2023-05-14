@@ -15,12 +15,22 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 
+/**
+ * Register
+ *
+ * @constructor Create empty Register
+ */
 class Register : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
 
+    /**
+     * On create
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -83,7 +93,7 @@ class Register : AppCompatActivity() {
 
             }
             builder.setNeutralButton(getString(R.string.llegirPolitiques)) { dialog, which ->
-                // Redirigir al usuario a la página de políticas de privacidad
+                // Redirigir al usuari a la página de polítiques de privacitat
                 startActivity(Intent(this, Politiques::class.java))
                 finish()
             }
@@ -130,6 +140,12 @@ class Register : AppCompatActivity() {
         }
     }
 
+    /**
+     * Register
+     *
+     * @param email
+     * @param password
+     */
     private fun register(email: String, password: String) {
         // Creem un nou usuari amb el correo i la contrasenya
         auth.createUserWithEmailAndPassword(email, password)
@@ -148,6 +164,11 @@ class Register : AppCompatActivity() {
     }
 
 
+    /**
+     * Show alert
+     *
+     * @param message
+     */
     private fun showAlert(message: String) {
         Utils.mostrarAlerta(this, "Error", message)
     }

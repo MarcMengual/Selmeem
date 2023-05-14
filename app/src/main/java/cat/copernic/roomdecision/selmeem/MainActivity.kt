@@ -13,11 +13,21 @@ import com.google.firebase.ktx.Firebase
 import cat.copernic.roomdecision.selmeem.databinding.ActivityMainBinding
 import java.util.*
 
+/**
+ * Main activity
+ *
+ * @constructor Create empty Main activity
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
 
+    /**
+     * On create
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -159,7 +169,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    // Comprova si l'usuari ja ha iniciat sessió anteriorment
+    /**
+     * Check if user is logged
+     *
+     */// Comprova si l'usuari ja ha iniciat sessió anteriorment
     private fun checkIfUserIsLogged() {
         if (auth.currentUser != null) {
             // Si l'usuari ja ha iniciat sessió, inicia l'activitat ContenidorFragments
@@ -171,7 +184,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Inicia sessió amb les credencials proporcionades per l'usuari
+    /**
+     * Login ac
+     *
+     * @param email
+     * @param password
+     */// Inicia sessió amb les credencials proporcionades per l'usuari
     private fun loginAc(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
