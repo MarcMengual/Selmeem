@@ -11,12 +11,12 @@
         <item
             android:id="@+id/toHome"
             android:icon="@drawable/homeboto"
-            android:title="@string/inici" />
+            android:title="Home" />
 
         <item
             android:id="@+id/action_pantalla_inicial_to_nova_Publicacio"
             android:icon="@drawable/nouboto"
-            android:title="@string/nova_publicaio" />
+            android:title="New Post" />
     </group>
 
     <group android:id="@+id/no"
@@ -25,7 +25,7 @@
         <item
             android:id="@+id/action_pantalla_inicial_to_perfil"
             android:icon="@drawable/perfil"
-            android:title="@string/perfil" />
+            android:title="Profile" />
     </group>
 
     <group android:id="@+id/op"
@@ -34,7 +34,7 @@
         <item
             android:id="@+id/logOut"
             android:icon="@drawable/logout"
-            android:title="@string/tancar_sessio" />
+            android:title="LogOut" />
     </group>
 
 </menu>

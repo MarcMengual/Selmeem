@@ -252,7 +252,7 @@ class Perfil : Fragment() {
         when (currentLocale) {
             Locale("ca") -> binding.idiom.setImageResource(R.drawable.catalaflag)
             Locale("es") -> binding.idiom.setImageResource(R.drawable.castellaflag)
-            else -> binding.idiom.setImageResource(R.drawable.regneflag)
+            Locale("en") -> binding.idiom.setImageResource(R.drawable.regneflag)
         }
 
     }

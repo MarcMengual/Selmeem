@@ -2,8 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
-    id("org.jetbrains.dokka") version "1.8.10"
-
 }
 
 android {
@@ -40,7 +38,6 @@ android {
     dataBinding {
         enabled = true
     }
-
 }
 
 dependencies {
@@ -75,9 +72,4 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.window:window:1.0.0-alpha05'
 
-
-
-
 }
-
-apply plugin: 'com.google.gms.google-services'
